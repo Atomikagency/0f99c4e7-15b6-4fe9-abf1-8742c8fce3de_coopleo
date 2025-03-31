@@ -2,17 +2,24 @@
 
 /**
  * Plugin Name: Coopleo
- * Description: Add powerfull search engine on website
+ * Description: Add powerful search engine on website
  * Version: 1.0.1
- * Author: AtomikAgency
- * Author URI: https://atomikagency.fr/
+ * Author: Kevin JANIKY
+ * Author URI: https://kevinjaniky.fr/
  */
 
 define('COOPLEO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('COOPLEO_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('COOPLEO_SEARCH_PAGE_RESULT', 37996);
+define('COOPLEO_API_ENDPOINT','https://coopleo_backend.test/api/search');
 
 if (!defined('ABSPATH')) {
     exit; // Prevent direct access
 }
+
+require_once  COOPLEO_PLUGIN_DIR.'/includes/therapeute.api.php';
+require_once  COOPLEO_PLUGIN_DIR.'/includes/shortcodes/search.php';
+require_once  COOPLEO_PLUGIN_DIR.'/includes/shortcodes/result.php';
+
 
 require_once COOPLEO_PLUGIN_DIR . 'update-checker.php';
