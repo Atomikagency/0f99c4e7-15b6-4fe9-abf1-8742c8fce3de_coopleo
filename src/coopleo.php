@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Coopleo
  * Description: Add powerfull search engine on website
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: AtomikAgency
  * Author URI: https://atomikagency.fr/
  */
