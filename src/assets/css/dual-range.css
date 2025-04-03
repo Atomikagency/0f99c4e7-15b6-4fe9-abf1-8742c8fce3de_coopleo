@@ -1,0 +1,54 @@
+.coopleo-dual-range{
+
+    &.no-start {
+        & .ui .start {
+            display: none;
+        }
+    }
+
+    & .ui {
+        background: #fff;
+        border: 1px solid var(--coopleo-secondary);
+        height: 7px;
+        position: relative;
+        border-radius: 30px;
+        width: 100%;
+    }
+
+    & .middle {
+        height: 5px;
+        width: 100px;
+        background: var(--coopleo-primary);
+        position: absolute;
+        border-radius: 30px;
+        z-index: 0;
+    }
+
+    & .ui .start,
+    & .ui .end {
+        position: absolute;
+        background: var(--coopleo-primary);
+        top: 50%;
+        height: 16px;
+        line-height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        text-align: center;
+        user-select: none;
+        transform: translate(-50%, -50%);
+        font-size: 0.8rem;
+        z-index: 1;
+    }
+    & .ui .start span,
+    & .ui .end span {
+        transform: translateY(-100%);
+        display: none;
+    }
+    & .ui .active:not(.middle) {
+        /* background: #007aff; */
+        z-index: 2;
+    }
+    /* & .ui .active span {
+        display: inline-block;
+    } */
+}

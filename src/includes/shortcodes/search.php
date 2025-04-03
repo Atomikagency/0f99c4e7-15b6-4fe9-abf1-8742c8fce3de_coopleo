@@ -3,9 +3,11 @@
 function coopleo_search_shortcode($atts) {
     $atts = shortcode_atts(array(
         'isRedirect' => 'false',
+        'hasAdvencedFilters' => 'true',
     ), $atts, 'coopleo_search');
 
     $isRedirect = filter_var($atts['isRedirect'], FILTER_VALIDATE_BOOLEAN);
+    $hasAdvencedFilters = filter_var($atts['hasAdvencedFilters'], FILTER_VALIDATE_BOOLEAN);
     ob_start();
 
     $searchPageResultUrl = get_permalink(COOPLEO_SEARCH_PAGE_RESULT);
@@ -56,7 +58,8 @@ function coopleo_search_shortcode($atts) {
         'isRedirect' => $isRedirect,
         'searchPageResultUrl' => $searchPageResultUrl,
         'api_endpoint' => COOPLEO_API_ENDPOINT,
-        'autocompleteData' => $autocompleteSearch
+        'autocompleteData' => $autocompleteSearch,
+        'hasAdvencedFilters' => $hasAdvencedFilters,
     ];
 
     include COOPLEO_PLUGIN_DIR . 'templates/search.tpl.php';

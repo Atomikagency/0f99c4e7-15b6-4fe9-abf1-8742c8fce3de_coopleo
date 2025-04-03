@@ -1,0 +1,521 @@
+:root {
+    --coopleo-primary: #c92c60;
+    --coopleo-primary-light: #c92c601a;
+    --coopleo-secondary: #d8dfe6;
+    --coopleo-radius: 12px;
+    --coopleo-radius-sm: 8px;
+    --coopleo-backdrop: #3f3f4680;
+}
+
+#coopleo-search {
+    /* background-color: #FCF6ED; */
+    & .ci-label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        & span {
+            color: #000;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+    }
+
+    & .coopleo-rdv-type-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0.625rem;
+
+        & .coopleo-rdv-type-choices {
+            display: flex;
+            gap: 0.75rem;
+
+            & label {
+                position: relative;
+                border: 1px solid var(--coopleo-secondary);
+                padding: 0.875rem 1.2rem;
+                border-radius: var(--coopleo-radius-sm);
+                cursor: pointer;
+                background-color: #fff;
+
+                &:has(input:checked) {
+                    border-color: var(--coopleo-primary);
+                    color: var(--coopleo-primary);
+                    background-color: var(--coopleo-primary-light);
+                }
+
+                & input {
+                    width: 0;
+                    height: 0;
+                    opacity: 0;
+                    position: absolute;
+                    inset: 0;
+                }
+            }
+        }
+    }
+
+    & input {
+        color: #000;
+    }
+
+    & .coopleo-rdv-filters-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto;
+        border: 1px solid var(--coopleo-secondary);
+        border-radius: var(--coopleo-radius);
+        background-color: #fff;
+
+        & .coopleo-rdv-filters-divider {
+            width: 1px;
+            background-color: var(--coopleo-secondary);
+            margin-block: 6px;
+        }
+
+        & label {
+            padding-block: 0.375rem;
+            padding-inline: 1rem;
+            cursor: text;
+
+            & input {
+                width: 100%;
+                padding: 0 1rem;
+                border: none;
+                background: none;
+            }
+        }
+
+        & .coopleo-rdv-filters-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.375rem;
+            padding: 0.375rem;
+
+            & button {
+                width: 53px;
+            }
+        }
+
+        & #coopleo-search-results,
+        & #coopleo-address-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+            width: max(100%, 200px);
+            z-index: 50;
+            max-height: min(50vh, 300px);
+            background-color: #fff;
+            border-radius: var(--coopleo-radius-sm);
+            border: 1px solid var(--coopleo-secondary);
+            overflow-y: auto;
+            padding-inline: 0.5rem;
+            padding-bottom: 0.5rem;
+
+            &:not(:empty) {
+                display: block;
+            }
+
+            & .coopleo-search-results-group {
+                display: flex;
+                flex-direction: column;
+
+                & span {
+                    position: sticky;
+                    top: 0;
+                    background-color: #fff;
+                    display: block;
+                    border-bottom: 1px solid var(--coopleo-secondary);
+                    margin-bottom: 5px;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                    padding-top: 0.5rem;
+                    color: var(--coopleo-primary);
+                }
+
+                & button {
+                    all: unset;
+                    cursor: pointer;
+                    padding: 0.5rem;
+                    border-radius: var(--coopleo-radius-sm);
+
+                    &.focus,
+                    &:hover {
+                        color: var(--coopleo-primary);
+                        background-color: var(--coopleo-primary-light);
+                    }
+                }
+            }
+        }
+    }
+
+    & .coopleo-button {
+        background-color: var(--coopleo-primary);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        border-radius: var(--coopleo-radius);
+        padding: 0.875rem 1.06rem;
+
+        &.coopleo-button-secondary {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid var(--coopleo-secondary);
+        }
+
+        &.coopleo-button-icon {
+            padding: 0;
+            border-radius: var(--coopleo-radius-sm);
+            aspect-ratio: 1 / 1;
+
+            & svg {
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+        }
+    }
+
+    & #coopleo-advenced-filters-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+
+        & .coopleo-advenced-filters-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background-color: var(--coopleo-backdrop);
+            z-index: -1;
+        }
+
+        & .coopleo-advenced-filters-modal-container {
+            display: flex;
+            flex-direction: column;
+            width: clamp(300px, 100%, 600px);
+            background-color: #fff;
+            border-radius: var(--coopleo-radius);
+            max-height: min(95%, 700px);
+
+            & .coopleo-advenced-filters-modal-header {
+                padding-block: 1.5rem;
+                border-bottom: 1px solid var(--coopleo-secondary);
+
+                & h3 {
+                    font-size: 1.5625rem;
+                    font-family: inherit;
+                    color: #000;
+                    text-align: center;
+                    line-height: 1.5625rem;
+                    margin: 0;
+                }
+            }
+
+            & .coopleo-advenced-filters-modal-main {
+                padding: 2rem;
+                overflow: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+
+                & .coopleo-advenced-filters-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    & .label {
+                        font-weight: bold;
+                        color: #000;
+                    }
+                }
+
+                & .price-filters-container {
+                    & .price-filters-inputs {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        & label {
+                            color: #5c6872;
+                            font-weight: 300;
+                        }
+
+                        & input {
+                            max-width: 60px;
+                            margin-left: 10px;
+                            border: 1px solid var(--coopleo-secondary);
+                            border-radius: var(--coopleo-radius);
+                            background-color: #fff;
+                            padding: 0.75rem 0.5rem;
+                            text-align: center;
+
+                            &::-webkit-outer-spin-button,
+                            &::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                margin: 0;
+                            }
+
+                            &[type="number"] {
+                                -moz-appearance: textfield;
+                            }
+                        }
+                    }
+                }
+
+                & .perimeter-filters-container {
+                    & input[type="number"] {
+                        max-width: 60px;
+                        margin-left: 10px;
+                        border: 1px solid var(--coopleo-secondary);
+                        border-radius: var(--coopleo-radius);
+                        background-color: #fff;
+                        padding: 0.75rem 0.5rem;
+                        text-align: center;
+
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+
+                        &[type="number"] {
+                            -moz-appearance: textfield;
+                        }
+                    }
+                }
+
+                & .dispo-filters-container {
+                    & .dispo-filters-inputs {
+                        display: flex;
+                        gap: 0.75rem;
+
+                        & label {
+                            position: relative;
+                            border: 1px solid var(--coopleo-secondary);
+                            padding: 0.875rem 1.2rem;
+                            border-radius: var(--coopleo-radius-sm);
+                            cursor: pointer;
+                            background-color: #fff;
+
+                            &:has(input:checked) {
+                                border-color: var(--coopleo-primary);
+                                color: var(--coopleo-primary);
+                                background-color: var(--coopleo-primary-light);
+                            }
+
+                            & input {
+                                width: 0;
+                                height: 0;
+                                opacity: 0;
+                                position: absolute;
+                                inset: 0;
+                            }
+                        }
+                    }
+                }
+
+                & .lang-filters-container {
+                    & select {
+                        background-color: #fff;
+                        border: 1px solid var(--coopleo-secondary);
+                        border-radius: var(--coopleo-radius);
+                    }
+                }
+            }
+
+            & .coopleo-advenced-filters-modal-footer {
+                display: flex;
+                justify-content: space-between;
+                padding: 1rem 2rem;
+                border-top: 1px solid var(--coopleo-secondary);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 761px){
+    & #coopleo-basic-filters-modal {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 760px){
+    #coopleo-search #advenced-filters-toggle{
+        display: none;
+    }
+
+    #coopleo-search #coopleo-basic-filters-modal{
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+
+        & .coopleo-basic-filters-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background-color: var(--coopleo-backdrop);
+            z-index: -1;
+        }
+
+        & .coopleo-basic-filters-modal-container {
+            display: flex;
+            flex-direction: column;
+            width: clamp(300px, 100%, 600px);
+            background-color: #fff;
+            border-radius: var(--coopleo-radius);
+            max-height: min(95%, 700px);
+
+            & .coopleo-basic-filters-modal-header {
+                display: block !important;
+                padding-block: 1.5rem;
+                border-bottom: 1px solid var(--coopleo-secondary);
+
+                & h3 {
+                    font-size: 1.5625rem;
+                    font-family: inherit;
+                    color: #000;
+                    text-align: center;
+                    line-height: 1.5625rem;
+                    margin: 0;
+                }
+            }
+
+            & .coopleo-basic-filters-modal-main {
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                & .ci-label svg { display: none; }
+                & .ci-label span { font-size: 1rem; font-weight: bold; }
+
+                & #coopleo-search-container, & #coopleo-address-container {
+                    padding: 0;
+                }
+
+                & .coopleo-rdv-type-container {
+                    & .coopleo-rdv-type-choices label {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 5px;
+                        border: none;
+                        padding: 0;
+                        background-color: transparent;
+                        min-width: 80px;
+
+                        &:has(input:checked) .svg-container {
+                            border-color: var(--coopleo-primary);
+                            color: var(--coopleo-primary);
+                            background-color: var(--coopleo-primary-light);
+                        }
+
+                        & .svg-container {
+                            width: 100%;
+                            padding: 1rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border: 1px solid var(--coopleo-secondary);
+                            border-radius: var(--coopleo-radius-sm);
+                        }
+                    }
+                }
+
+                & .coopleo-rdv-filters-container{
+                    display: flex;
+                    flex-direction: column;
+                    gap: .25rem;
+                    margin-top: .5rem;
+                    border: none;
+
+                    & .input-container {
+                        box-shadow: 0px 0px 0px 1px var(--coopleo-secondary) inset;
+                        border-radius: var(--coopleo-radius-sm);
+                        margin-top: 10px;
+                        position: relative;
+
+                        & input {
+                            padding: .75rem;
+                        }
+
+                        &:has(button) input {
+                            padding-left: 3.75rem;
+                        }
+
+                        & #coopleo-localize-button-mobile {
+                            display: block !important;
+                            aspect-ratio: 1/1;
+                            position: absolute;
+                            top: 0; left: 0; bottom: 0;
+                        }
+                    }
+                }
+
+                & .coopleo-rdv-filters-buttons{ display: none; }
+            }
+
+            & .coopleo-basic-filters-modal-footer {
+                display: flex !important;
+                padding: 1rem 2rem;
+                border-top: 1px solid var(--coopleo-secondary);
+
+                & button {
+                    width: 100%;
+                    padding: 1rem;
+                    border-radius: var(--coopleo-radius);
+                    border: 1px solid var(--coopleo-primary);
+                    background-color: var(--coopleo-primary);
+                    color: #fff;
+                    font-size: 1rem;
+                    font-family: inherit;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    #coopleo-search .coopleo-search-mobile-toggles{
+        display: grid !important;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+
+        & #mobile-toogle-basic-modal{
+            all: unset;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            border-radius: var(--coopleo-radius);
+            border: 1px solid var(--coopleo-secondary);
+            padding: .375rem;
+            cursor: pointer;
+            height: 42px;
+            align-items: center;
+
+            & p{ margin: 0; }
+
+            & .coopleo-button{
+                align-self: stretch;
+                & svg{
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+/* @media screen and (max-width: 760px){
+    #coopleo-search #coopleo-advenced-filters-modal {
+        align-items: flex-end;
+        padding: 0;
+        padding-top: 10vh;
+        & .coopleo-advenced-filters-modal-container{
+            width: 100%;
+            max-height: 95%;
+            border-radius: var(--coopleo-radius) var(--coopleo-radius) 0 0;
+        }
+    }
+} */
