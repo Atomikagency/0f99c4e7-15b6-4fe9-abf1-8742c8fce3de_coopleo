@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="coopleo-rdv-filters-container">
-                    <label style="position: relative;" id="coopleo-search-container">
+                    <label style="position: relative;" id="coopleo-search-container" class="coopleo-search-item">
                         <span class="ci-label">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11.605" height="11.605" viewBox="0 0 11.605 11.605">
                                 <defs>
@@ -95,42 +95,44 @@
                             <span>Votre problématique</span>
                         </span>
                         <div class="input-container">
-                            <input type="text" name="search" id="coopleo-search-input" placeholder="Professionnel recherché" />
+                            <input type="text" name="q" id="coopleo-search-input" placeholder="Professionnel recherché" />
                         </div>
                         <div id="coopleo-search-results"></div>
                     </label>
                     <span class="coopleo-rdv-filters-divider"></span>
-                    <label style="position: relative;" id="coopleo-address-container">
-                        <span class="ci-label">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="9.154" height="12.02" viewBox="0 0 9.154 12.02">
-                            <g id="Groupe_559" data-name="Groupe 559" transform="translate(-0.423 12.01)" opacity="0.302">
-                                <g id="Groupe_560" data-name="Groupe 560">
-                                <path id="Tracé_265" data-name="Tracé 265" d="M8.614,2.8a4.577,4.577,0,0,1,4.577,4.577c0,2.528-4.577,7.444-4.577,7.444S4.037,9.9,4.037,7.373A4.577,4.577,0,0,1,8.614,2.8m0,2.758A1.736,1.736,0,1,1,6.879,7.291,1.736,1.736,0,0,1,8.614,5.555" transform="translate(-3.614 -14.807)" fill="#3f3f46" fill-rule="evenodd"/>
-                                </g>
-                            </g>
-                        </svg>
-                            <span>Localisation</span>
-                        </span>
-                        <div class="input-container">
-                            <button type="button" id="coopleo-localize-button-mobile" class="coopleo-button coopleo-button-secondary coopleo-button-icon" style="display: none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_487" data-name="Groupe 487" width="20" height="20" viewBox="0 0 20 20">
-                                    <defs>
-                                        <clipPath id="clip-path">
-                                        <rect id="Rectangle_790" data-name="Rectangle 790" width="20" height="20" fill="#c92c61"/>
-                                        </clipPath>
-                                    </defs>
-                                    <g id="Groupe_486" data-name="Groupe 486" clip-path="url(#clip-path)">
-                                        <path id="Tracé_258" data-name="Tracé 258" d="M138.839,136a2.839,2.839,0,1,0,2.839,2.839A2.843,2.843,0,0,0,138.839,136m0,4.056a1.217,1.217,0,1,1,1.217-1.217,1.218,1.218,0,0,1-1.217,1.217" transform="translate(-128.839 -128.839)" fill="#c92c61"/>
-                                        <path id="Tracé_259" data-name="Tracé 259" d="M18.658,8.923h-1.67a7.311,7.311,0,0,0-6.442-6.442V.811a.811.811,0,0,0-1.622,0v1.67A7.311,7.311,0,0,0,2.482,8.923H.811a.811.811,0,0,0,0,1.622h1.67a7.311,7.311,0,0,0,6.442,6.442v1.67a.811.811,0,0,0,1.622,0v-1.67a7.311,7.311,0,0,0,6.442-6.442h1.67a.811.811,0,0,0,0-1.622m-8.923,6.49a5.679,5.679,0,1,1,5.679-5.679,5.685,5.685,0,0,1-5.679,5.679" transform="translate(0.265 0.265)" fill="#c92c61"/>
+                    <div class="coopleo-search-item" style="position: relative;">
+                        <label style="position: relative;" id="coopleo-address-container">
+                            <span class="ci-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="9.154" height="12.02" viewBox="0 0 9.154 12.02">
+                                    <g id="Groupe_559" data-name="Groupe 559" transform="translate(-0.423 12.01)" opacity="0.302">
+                                        <g id="Groupe_560" data-name="Groupe 560">
+                                        <path id="Tracé_265" data-name="Tracé 265" d="M8.614,2.8a4.577,4.577,0,0,1,4.577,4.577c0,2.528-4.577,7.444-4.577,7.444S4.037,9.9,4.037,7.373A4.577,4.577,0,0,1,8.614,2.8m0,2.758A1.736,1.736,0,1,1,6.879,7.291,1.736,1.736,0,0,1,8.614,5.555" transform="translate(-3.614 -14.807)" fill="#3f3f46" fill-rule="evenodd"/>
+                                        </g>
                                     </g>
                                 </svg>
-                            </button>
-                            <input type="text" name="address" placeholder="Lieu de consultation" />
-                        </div>
-                        <input type="hidden" name="lat">
-                        <input type="hidden" name="lng">
-                        <div id="coopleo-address-results"></div>
-                    </label>
+                                <span>Localisation</span>
+                            </span>
+                            <div class="input-container">
+                                <input type="text" name="address" placeholder="Lieu de consultation" />
+                            </div>
+                            <input type="hidden" name="lat">
+                            <input type="hidden" name="lng">
+                            <div id="coopleo-address-results"></div>
+                        </label>
+                        <button type="button" id="coopleo-localize-button-mobile" class="coopleo-button coopleo-button-secondary coopleo-button-icon" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_487" data-name="Groupe 487" width="20" height="20" viewBox="0 0 20 20">
+                                <defs>
+                                    <clipPath id="clip-path">
+                                    <rect id="Rectangle_790" data-name="Rectangle 790" width="20" height="20" fill="#c92c61"/>
+                                    </clipPath>
+                                </defs>
+                                <g id="Groupe_486" data-name="Groupe 486" clip-path="url(#clip-path)">
+                                    <path id="Tracé_258" data-name="Tracé 258" d="M138.839,136a2.839,2.839,0,1,0,2.839,2.839A2.843,2.843,0,0,0,138.839,136m0,4.056a1.217,1.217,0,1,1,1.217-1.217,1.218,1.218,0,0,1-1.217,1.217" transform="translate(-128.839 -128.839)" fill="#c92c61"/>
+                                    <path id="Tracé_259" data-name="Tracé 259" d="M18.658,8.923h-1.67a7.311,7.311,0,0,0-6.442-6.442V.811a.811.811,0,0,0-1.622,0v1.67A7.311,7.311,0,0,0,2.482,8.923H.811a.811.811,0,0,0,0,1.622h1.67a7.311,7.311,0,0,0,6.442,6.442v1.67a.811.811,0,0,0,1.622,0v-1.67a7.311,7.311,0,0,0,6.442-6.442h1.67a.811.811,0,0,0,0-1.622m-8.923,6.49a5.679,5.679,0,1,1,5.679-5.679,5.685,5.685,0,0,1-5.679,5.679" transform="translate(0.265 0.265)" fill="#c92c61"/>
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="coopleo-rdv-filters-buttons">
                         <button type="button" id="coopleo-localize-button" class="coopleo-button coopleo-button-secondary coopleo-button-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_487" data-name="Groupe 487" width="20" height="20" viewBox="0 0 20 20">
@@ -172,7 +174,7 @@
                     <path id="Tracé_281" data-name="Tracé 281" d="M12.428,6.214A3.107,3.107,0,1,0,9.419,2.33H.777a.777.777,0,0,0,0,1.554H9.419a3.108,3.108,0,0,0,3.009,2.33M10.875,3.107a1.554,1.554,0,1,0,1.553-1.553,1.553,1.553,0,0,0-1.553,1.553M0,9.321a3.107,3.107,0,0,1,6.116-.777h8.642a.777.777,0,1,1,0,1.553H6.116A3.107,3.107,0,0,1,0,9.321Zm4.661,0a1.554,1.554,0,1,0-1.554,1.554A1.554,1.554,0,0,0,4.661,9.321" fill="#3f3f46" fill-rule="evenodd"/>
                 </g>
             </svg>
-            <span>Filtre avancés</span>
+            <span>Filtres avancés</span>
         </button>
     <?php } ?>
 
@@ -188,12 +190,12 @@
                     <div class="price-filters-inputs">
                         <label>
                             <span>min</span>
-                            <input type="number" id="price-min" name="price-min" placeholder="Min" min="0" value="0">
+                            <input type="number" id="price-min" name="min_price" placeholder="Min" min="0" value="0">
                         </label>
                         <span>-</span>
                         <label>
                             <span>max</span>
-                            <input type="number" id="price-max" name="price-max" placeholder="Max" min="0" value="150">
+                            <input type="number" id="price-max" name="max_price" placeholder="Max" min="0" value="150">
                         </label>
                     </div>
                     <div id="dual-range-price" class="coopleo-dual-range">
@@ -204,7 +206,7 @@
                 <div class="coopleo-advenced-filters-group perimeter-filters-container">
                     <label class="label" for="perimeter">Périmètre de recherche</label>
                     <div>
-                        <input type="number" id="perimeter" name="perimeter" placeholder="Km" min="0" max="150" value="150">
+                        <input type="number" id="perimeter" name="perimetre" placeholder="Km" min="0" max="150" value="150">
                         <span>km</span>
                     </div>
                     <div id="dual-range-perimeter" class="coopleo-dual-range no-start">
@@ -213,25 +215,34 @@
                     </div>
                 </div>
                 <div class="coopleo-advenced-filters-group dispo-filters-container">
-                    <span class="label">Disponibilité</span>
+                    <span class="label">Prochaine disponibilité</span>
                     <div class="dispo-filters-inputs">
                         <label>
                             <span>Cette semaine</span>
-                            <input type="checkbox" value="this_week" />
+                            <input type="radio" name="first_available" value="this_week" />
                         </label>
                         <label>
                             <span>Semaine prochaine</span>
-                            <input type="checkbox" value="next_week" />
+                            <input type="radio" name="first_available" value="next_week" />
                         </label>
                     </div>
                 </div>
                 <div class="coopleo-advenced-filters-group lang-filters-container">
                     <label class="label" for="lang">Langue parlée</label>
-                    <select id="lang" name="lang">
-                        <option>Toutes les langues</option>
+                    <select id="lang" name="langue">
+                        <option value="all">Toutes les langues</option>
                         <option value="fr">Français</option>
                         <option value="en">Anglais</option>
                     </select>
+                </div>
+                <div class="coopleo-advenced-filters-group dispo-filters-container">
+                    <span class="label">Prise de rendez-vous</span>
+                    <div class="dispo-filters-inputs">
+                        <label>
+                            <span>Agenda en ligne</span>
+                            <input type="checkbox" name="has_online_calendar" />
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="coopleo-advenced-filters-modal-footer">
@@ -250,11 +261,6 @@
     const form = document.getElementById('coopleo-search');
     const resetFilters = document.getElementById('coopleo-reset-filters-button');
     const autocompleteData = <?php echo json_encode($vars["autocompleteData"], JSON_UNESCAPED_UNICODE); ?>;
-
-    form.addEventListener('submit', function(e){
-        e.preventDefault();
-        console.log('submit');
-    });
 
     // Modal management
     const advencedFiltersModalBackdrop = document.getElementById('advenced-filters-modal-backdrop');
@@ -337,11 +343,22 @@
         perimeterInput.value = end;
     })
 
-    // Reset filters
+    // Reset filters & form submit
     resetFilters.addEventListener('click', () => {
         form.reset();
         dualRange.update({start: 0, end: 150})
     })
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target));
+        document.dispatchEvent(new CustomEvent('coopleo-search', { detail: data }));
+
+        advencedFiltersModal.style.display = "none";
+        document.removeEventListener("keydown", closeAdvencedFiltersByEscape)
+        basicFiltersModal.style.display = "none";
+            document.removeEventListener("keydown", closeBasicFiltersByEscape)
+    });
 
     // Location management
     const localizeBtn = document.getElementById('coopleo-localize-button');

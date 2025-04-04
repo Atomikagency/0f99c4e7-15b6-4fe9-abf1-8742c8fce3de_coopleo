@@ -1,0 +1,196 @@
+:root {
+    --coopleo-primary: #c92c60;
+    --coopleo-primary-light: #c92c601a;
+    --coopleo-secondary: #d8dfe6;
+    --coopleo-radius: 12px;
+    --coopleo-radius-sm: 8px;
+    --coopleo-backdrop: #3f3f4680;
+    --coopleo-result-card-bg: #FAE9EF;
+}
+
+#coopleo-results {
+    padding: 10px;
+    color: #000;
+
+    & #coopleo-results-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    & p, & h2, & h3 { padding: 0; margin: 0; line-height: 1.2em; color: inherit; }
+
+    & .result-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: var(--coopleo-radius);
+        background-color: var(--coopleo-result-card-bg);
+        min-height: 100px;
+
+        & .result-card-therapist {
+            background-color: #fff;
+            border-radius: var(--coopleo-radius);
+            padding: 1.25rem;
+
+            & .result-card-therapist-infos{
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+
+                & img {
+                    flex-shrink: 0;
+                    width: 3.93rem;
+                    aspect-ratio: 1/1;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                & .result-card-therapist-name{
+                    font-size: 1.125rem;
+                    font-weight: bold;
+                    font-family: inherit;
+                    margin-bottom: 0.5rem;
+                }
+
+                & .result-card-therapist-type{
+                    font-size: 1.125rem;
+                    font-family: inherit;
+                    color: var(--coopleo-primary);
+                }
+            }
+
+            & .result-card-therapist-bottom{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-top: 1.25rem;
+
+                & .result-card-therapist-details{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    & .result-card-therapist-detail {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+
+                        & .svg-container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 1rem;
+                            height: 100%;
+                            aspect-ratio: 1/1;
+                            background-color: var(--coopleo-backdrop);
+                            border-radius: 50%;
+
+                            & > svg {
+                                width: .75rem;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+
+                & .result-card-therapist-rdv{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    align-items: flex-end;
+                    & .rdv-type-list{
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 0.5rem;
+                    }
+                }
+            }
+
+        }
+
+        & .result-card-calendar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            font-size: .75rem;
+            padding: 1rem 1.875rem;
+            
+            & .days-list{
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: .5rem;
+
+                & .day-info{
+                    display: flex;
+                    flex-direction: column;
+                    gap: .5rem;
+                    & .day-header{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: .25rem;
+                        & .day-name{
+                            font-weight: bold;
+                        }
+                    }
+
+                    & .day-availablilty{
+                        display: flex;
+                        flex-direction: column;
+                        gap: .25rem;
+                        & .available-morning, & .available-afternoon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #fff;
+                            border-radius: var(--coopleo-radius-sm);
+                            color: var(--coopleo-primary);
+                            font-weight: bold;
+                            padding: .5rem;
+                            text-align: center;
+
+                            &.disabled{
+                                background-color: var(--coopleo-secondary);
+                                color: var(--coopleo-backdrop);
+                            }
+                        }
+                    }
+                }
+            }
+
+            & .result-card-calendar-more{
+                font-weight: bold;
+                text-decoration: underline;
+                text-underline-offset: .25rem;
+            }
+        }
+    }
+
+    & .coopleo-button {
+        background-color: var(--coopleo-primary);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        border-radius: var(--coopleo-radius);
+        padding: 0.875rem 1.06rem;
+
+        &.coopleo-button-secondary {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid var(--coopleo-secondary);
+        }
+
+        &.coopleo-button-icon {
+            padding: 0;
+            border-radius: var(--coopleo-radius-sm);
+            aspect-ratio: 1 / 1;
+
+            & svg {
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+        }
+    }
+}
