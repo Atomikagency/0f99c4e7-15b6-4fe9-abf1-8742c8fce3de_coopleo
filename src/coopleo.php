@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Coopleo
  * Description: Add powerful search engine on website
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Kevin JANIKY
  * Author URI: https://kevinjaniky.fr/
  */
