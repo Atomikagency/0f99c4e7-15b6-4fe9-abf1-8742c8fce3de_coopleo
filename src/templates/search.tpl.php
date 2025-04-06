@@ -41,7 +41,7 @@
                     </p>
                     <div class="coopleo-rdv-type-choices">
                         <label>
-                            <input type="radio" name="type" value="cabinet">
+                            <input type="checkbox" name="type_cabinet" value="cabinet">
                             <span class="svg-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_634" data-name="Groupe 634" width="16.853" height="16.845" viewBox="0 0 16.853 16.845">
                                     <defs>
@@ -57,7 +57,7 @@
                             <span>En cabinet</span>
                         </label>
                         <label>
-                            <input type="radio" name="type" value="visio">
+                            <input type="checkbox" name="type_visio" value="visio">
                             <span class="svg-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_628" data-name="Groupe 628" width="16.779" height="16.777" viewBox="0 0 16.779 16.777">
                                     <defs>
@@ -117,6 +117,7 @@
                             </div>
                             <input type="hidden" name="lat">
                             <input type="hidden" name="lng">
+                            <input type="hidden" name="city">
                             <div id="coopleo-address-results"></div>
                         </label>
                         <button type="button" id="coopleo-localize-button-mobile" class="coopleo-button coopleo-button-secondary coopleo-button-icon" style="display: none;">
@@ -352,12 +353,26 @@
     form.addEventListener('submit', function(e){
         e.preventDefault();
         const data = Object.fromEntries(new FormData(e.target));
+        if (!data.type_cabinet || !data.type_visio) {
+            data.type = data.type_cabinet ?? data.type_visio ?? undefined;
+        }
+        if (data.type === undefined) {
+            delete data.type;
+        }
+        delete data.type_cabinet;
+        delete data.type_visio;
         document.dispatchEvent(new CustomEvent('coopleo-search', { detail: data }));
 
+        
+        if ((window.location.origin + window.location.pathname) !== '<?php echo $vars['searchPageResultUrl']; ?>'){
+            const queryString = new URLSearchParams(data).toString();
+            window.location.href = `<?php echo $vars['searchPageResultUrl']; ?>?${queryString}`;
+        }
+
         advencedFiltersModal.style.display = "none";
-        document.removeEventListener("keydown", closeAdvencedFiltersByEscape)
+        document.removeEventListener("keydown", closeAdvencedFiltersByEscape);
         basicFiltersModal.style.display = "none";
-            document.removeEventListener("keydown", closeBasicFiltersByEscape)
+        document.removeEventListener("keydown", closeBasicFiltersByEscape);
     });
 
     // Location management
@@ -367,6 +382,7 @@
     const lngInput = document.querySelector("#coopleo-search input[name='lng']");
     const addressInput = document.querySelector("#coopleo-search input[name='address']");
     const adressResults = document.getElementById('coopleo-address-results');
+    const cityInput = document.querySelector("#coopleo-search input[name='city']");
     let hasAddressCompletion = false;
     let focusedAddressCompletion = 0;
     let addressCompletionOptions = [];
@@ -423,6 +439,7 @@
         const value = e.target.value;
         latInput.value = '';
         lngInput.value = '';
+        cityInput.value = '';
         if (addressTimeoutId) {
             clearTimeout(addressTimeoutId);
         }
@@ -447,6 +464,7 @@
             lngInput.value = position.coords.longitude;
             const addresses = await getAddressByPosition(position.coords.latitude, position.coords.longitude)
             addressInput.value = addresses.features[0].properties.label;
+            cityInput.value = addresses.features[0].properties.city;
         }, (err) => {
             if (err.code === 1) {
                 alert('Veuillez autoriser la géolocalisation dans votre navigateur.');
@@ -492,6 +510,7 @@
                 addressInput.value = result.properties.label;
                 latInput.value = result.geometry.coordinates[1];
                 lngInput.value = result.geometry.coordinates[0];
+                cityInput.value = result.properties.city;
                 resetAddressAutocomplete();
             });
             groupResults.appendChild(resultElement);
@@ -688,6 +707,57 @@
         return results.map(item => item.candidate);
     }
 
+    window.addEventListener("DOMContentLoaded", () => {
+        if (window.location.search !== "") {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlParamsObj = Object.fromEntries(urlParams.entries());
+            if(urlParamsObj.q){
+                searchInput.value = urlParamsObj.q;
+            }
+            if(urlParamsObj.address){
+                addressInput.value = urlParamsObj.address;
+            }
+            if(urlParamsObj.lat){
+                latInput.value = urlParamsObj.lat;
+            }
+            if(urlParamsObj.lng){
+                lngInput.value = urlParamsObj.lng;
+            }
+            if(urlParamsObj.city){
+                cityInput.value = urlParamsObj.city;
+            }
+            if(urlParamsObj.min_price){
+                minPrice.value = urlParamsObj.min_price;
+            }
+            if(urlParamsObj.max_price){
+                maxPrice.value = urlParamsObj.max_price;
+            }
+            if(urlParamsObj.perimetre){
+                perimeterInput.value = urlParamsObj.perimetre;
+            }
+            if (urlParamsObj.has_online_calendar) {
+               document.querySelector("#coopleo-search input[name='has_online_calendar']").checked = true;
+            }
+            if (urlParamsObj.type) {
+                const toCheck = document.querySelector(".coopleo-rdv-type-container input[value='" + urlParamsObj.type + "']");
+                if (toCheck) {
+                    toCheck.checked = true;
+                }
+            }
+            if (urlParamsObj.first_available) {
+                const toCheck = document.querySelector("#coopleo-search input[name='first_available'][value='" + urlParamsObj.first_available + "']");
+                if (toCheck) {
+                    toCheck.checked = true;
+                }
+            }
+            if (urlParamsObj.langue){
+                document.querySelector("#coopleo-search select[name='langue']").value = urlParamsObj.langue;
+            }else{
+                document.querySelector("#coopleo-search select[name='langue']").value = "all";
+            }
+        }
+    })
+
     // Addresses gouv api
     async function getAddressByPosition(lat, lng){
         const res = await fetch(`https://api-adresse.data.gouv.fr/reverse/?lon=${lng}&lat=${lat}`);
@@ -709,6 +779,6 @@
 // }
 
 // echo '<pre>';
-// var_dump($vars["autocompleteData"]);
+// var_dump($vars);
 // echo '</pre>';
 ?>

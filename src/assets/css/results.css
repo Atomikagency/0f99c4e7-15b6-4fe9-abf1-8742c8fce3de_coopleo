@@ -2,6 +2,7 @@
     --coopleo-primary: #c92c60;
     --coopleo-primary-light: #c92c601a;
     --coopleo-secondary: #d8dfe6;
+    --coopleo-tertiary: #3f3f46;
     --coopleo-radius: 12px;
     --coopleo-radius-sm: 8px;
     --coopleo-backdrop: #3f3f4680;
@@ -12,20 +13,83 @@
     padding: 10px;
     color: #000;
 
+    & .header{
+
+        & h1 {
+            font-size: 1.875rem;
+            font-family: inherit;
+
+            & span.underline {
+                position: relative;
+
+                &:after{
+                    content: "";
+                    background-color: #FBD407;
+                    position: absolute;
+                    left: 0; right: 0;
+                    bottom: 0;
+                    height: .4em;
+                    z-index: -1;
+                }
+            }
+
+            & #coopleo-type-effect{
+                color: var(--coopleo-primary);
+            }
+        }
+
+        & #coopleo-results-count-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.25rem;
+
+            & label {
+                color: var(--coopleo-tertiary);
+                font-size: .875rem;
+                position: relative;
+                
+                & select#coopleo-sort-by {
+                    border: 1px solid var(--coopleo-tertiary);
+                    border-radius: var(--coopleo-radius-sm);
+                    background-color: transparent;
+                    color: inherit;
+                    font-size: .875rem;
+                    padding: .4rem .625rem;
+                    padding-right: 1.5rem;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    cursor: pointer;
+                }
+
+                & .svg-container {
+                    position: absolute;
+                    top: 50%; right: 6px;
+                    transform: translateY(-60%);
+                    pointer-events: none;
+                }
+            }
+
+        }
+    }
+
     & #coopleo-results-container {
         display: flex;
         flex-direction: column;
         gap: 1.25rem;
+        margin-top: 3rem;
     }
 
-    & p, & h2, & h3 { padding: 0; margin: 0; line-height: 1.2em; color: inherit; }
+    & p, & h1, & h2, & h3 { padding: 0; margin: 0; line-height: 1.2em; color: inherit; }
 
     & .result-card {
         display: grid;
         grid-template-columns: 1fr 1fr;
         border-radius: var(--coopleo-radius);
         background-color: var(--coopleo-result-card-bg);
-        min-height: 100px;
 
         & .result-card-therapist {
             background-color: #fff;
@@ -63,6 +127,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
+                gap: .625rem;
                 margin-top: 1.25rem;
 
                 & .result-card-therapist-details{
@@ -78,6 +143,7 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
+                            flex-shrink: 0;
                             width: 1rem;
                             height: 100%;
                             aspect-ratio: 1/1;
@@ -95,12 +161,16 @@
                 & .result-card-therapist-rdv{
                     display: flex;
                     flex-direction: column;
+                    flex-shrink: 0;
                     gap: 0.5rem;
                     align-items: flex-end;
                     & .rdv-type-list{
                         display: flex;
                         justify-content: flex-end;
                         gap: 0.5rem;
+                    }
+                    & .coopleo-button{
+                        color: #fff;
                     }
                 }
             }
@@ -190,6 +260,39 @@
             & svg {
                 width: 1.25rem;
                 height: 1.25rem;
+            }
+        }
+    }
+
+    & #coopleo-results-pagination-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+
+        & button{
+            padding: .25rem;
+        }
+    }
+
+    & #coopleo-results-per-page{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+
+@media screen and (max-width: 760px){
+    #coopleo-results {
+        & .result-card {
+            grid-template-columns: 1fr;
+
+            & .result-card-calendar {
+                padding: 1rem .5rem;
             }
         }
     }
