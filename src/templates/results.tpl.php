@@ -389,15 +389,20 @@
             const dayName = jour.setLocale("fr").toFormat("cccc")
             replaceTplContent(tpl, "day-name", dayName.charAt(0).toUpperCase() + dayName.slice(1));
             replaceTplContent(tpl, "day-date", jour.setLocale("fr").toFormat("dd LLL"));
-            if (!data.dates_disponibility_by_moment.includes(jour.toFormat("yyyy-MM-dd") + "-matin") || today.hour >= 12) {
+            if(today.ts > jour.ts){
                 tpl.querySelector(".available-morning").classList.add("disabled");
-            }else if(data.link){
-                tpl.querySelector(".available-morning").href = data.link;
-            }
-            if (!data.dates_disponibility_by_moment.includes(jour.toFormat("yyyy-MM-dd") + "-apres-midi")) {
                 tpl.querySelector(".available-afternoon").classList.add("disabled");
-            }else if(data.link){
-                tpl.querySelector(".available-afternoon").href = data.link;
+            }else{
+                if (!data.dates_disponibility_by_moment.includes(jour.toFormat("yyyy-MM-dd") + "-matin") || (today.hour >= 12 && today.day === jour.day)) {
+                    tpl.querySelector(".available-morning").classList.add("disabled");
+                }else if(data.link){
+                    tpl.querySelector(".available-morning").href = data.link;
+                }
+                if (!data.dates_disponibility_by_moment.includes(jour.toFormat("yyyy-MM-dd") + "-apres-midi")) {
+                    tpl.querySelector(".available-afternoon").classList.add("disabled");
+                }else if(data.link){
+                    tpl.querySelector(".available-afternoon").href = data.link;
+                }
             }
             dayList.appendChild(tpl);
         });
