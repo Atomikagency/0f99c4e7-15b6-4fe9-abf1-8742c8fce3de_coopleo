@@ -85,7 +85,7 @@
 
     & p, & h1, & h2, & h3 { padding: 0; margin: 0; line-height: 1.2em; color: inherit; }
 
-    & #coopleo-no-results{
+    & #coopleo-no-results {
         display: flex;
         flex-direction: column;
         justify-content: center;
