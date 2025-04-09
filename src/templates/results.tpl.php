@@ -31,7 +31,7 @@
        </div>
     </div>
     <div id="coopleo-results-container"></div>
-    <div id="coopleo-no-results">
+    <div id="coopleo-no-results" style="display: none;">
         <p>Nous n'avons pas de professionnel à proximité.</p>
         <p>L'accompagnement en visioconférence est une véritable aide. N'hésitez pas à élargir votre recherche en sélectionnant Visioconférence.</p>
     </div>
@@ -149,7 +149,7 @@
                                 <path id="Tracé_277" data-name="Tracé 277" d="M10.688,46.867H4.47C1.632,46.867,0,45.306,0,42.593V36.274C0,33.561,1.632,32,4.47,32h6.219c2.837,0,4.47,1.561,4.47,4.274v6.319c0,2.713-1.632,4.274-4.47,4.274M4.47,33.115c-2.223,0-3.3,1.033-3.3,3.159v6.319c0,2.126,1.081,3.159,3.3,3.159h6.219c2.223,0,3.3-1.033,3.3-3.159V36.274c0-2.126-1.08-3.159-3.3-3.159Z" transform="translate(0 -30.885)" fill="#fff"/>
                             </g>
                         </svg>
-                        <span>Prendre RDV</span>
+                        <span>Prendre rendez-vous</span>
                     </a>
                 </div>
             </div>
@@ -187,7 +187,8 @@
     const perPageSelect = document.getElementById("coopleo-per-page");
     const sortBySelect = document.getElementById("coopleo-sort-by");
     const sortByLocationOption = document.getElementById("coopleo-sort-by-location");
-    let filters = {"q":"","address":"","lat":"","lng":"","min_price":"0","max_price":"150","perimetre":"150"};
+    const noResultsContainer = document.querySelector("#coopleo-results #coopleo-no-results");
+    let filters = {"q":"","address":"","lat":"","lng":"","min_price":"0","max_price":"240","perimetre":"20"};
     let perPage = <?php echo $vars["limit"]; ?>;
     let currentPage = 1;
     let totalPages = 1;
@@ -224,8 +225,8 @@
             if (urlParamsObj.currentPage) {
                 currentPage = urlParamsObj.currentPage;
             }
-            fetchResults();
         }
+        fetchResults();
     })
 
     const lang = {
@@ -280,6 +281,8 @@
         const queryString = new URLSearchParams({...filters, per_page: perPage, sort_by: orderBy, currentPage: currentPage}).toString();
         window.history.pushState({}, '', `?${queryString}`);
 
+        noResultsContainer.style.display = "none";
+
         const response = await fetch(searchURL, {
             method: 'POST',
             headers: {
@@ -299,6 +302,8 @@
             results.data.forEach(result => {
                 generateResult(result.document);
             });
+        }else{
+            noResultsContainer.style.display = "block";
         }
 
         generatePagination(results.pagination);
