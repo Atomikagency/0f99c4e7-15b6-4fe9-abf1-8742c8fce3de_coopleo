@@ -233,9 +233,9 @@
                     <label class="label" for="lang">Langue parlée</label>
                     <select id="lang" name="langue">
                         <option value="all">Toutes les langues</option>
-                        <option value="fr">Français</option>
-                        <option value="en">Anglais</option>
-                        <option value="es">Espagnol</option>
+                        <option value="french">Français</option>
+                        <option value="english">Anglais</option>
+                        <option value="spanish">Espagnol</option>
                     </select>
                 </div>
                 <div class="coopleo-advenced-filters-group dispo-filters-container">
