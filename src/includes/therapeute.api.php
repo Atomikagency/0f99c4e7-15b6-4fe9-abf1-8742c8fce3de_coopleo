@@ -44,7 +44,9 @@ function register_toolset_meta_to_rest() {
         'tarif_min' => 'wpcf-therapeute-tarif-min',
         'langue_parlee' => 'wpcf-therapeutes-langue-parlee',
         'specialite_principale' => 'wpcf-therapeutes-specialite-principale-pour-affichage',
-        'score' => 'wpcf-score'
+        'score' => 'wpcf-score',
+        'available_weekend' => 'wpcf-disponible-le-week-end',
+        'available_night' => 'wpcf-disponible-le-soir',
     ];
 
     foreach ($meta_fields as $rest_field => $meta_key) {
