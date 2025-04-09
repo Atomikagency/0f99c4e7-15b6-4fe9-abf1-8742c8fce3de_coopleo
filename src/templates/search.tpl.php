@@ -92,10 +92,10 @@
                                     </g>
                                 </g>
                             </svg>
-                            <span>Votre problématique</span>
+                            <span>Votre recherche</span>
                         </span>
                         <div class="input-container">
-                            <input type="text" name="q" id="coopleo-search-input" placeholder="Professionnel recherché" />
+                            <input type="text" name="q" id="coopleo-search-input" placeholder="Problème, nom du praticien, métier" />
                         </div>
                         <div id="coopleo-search-results"></div>
                     </label>
@@ -118,6 +118,7 @@
                             <input type="hidden" name="lat">
                             <input type="hidden" name="lng">
                             <input type="hidden" name="city">
+                            <input type="hidden" name="cp">
                             <div id="coopleo-address-results"></div>
                         </label>
                         <button type="button" id="coopleo-localize-button-mobile" class="coopleo-button coopleo-button-secondary coopleo-button-icon" style="display: none;">
@@ -196,23 +197,23 @@
                         <span>-</span>
                         <label>
                             <span>max</span>
-                            <input type="number" id="price-max" name="max_price" placeholder="Max" min="0" value="150">
+                            <input type="number" id="price-max" name="max_price" placeholder="Max" min="0" value="240">
                         </label>
                     </div>
                     <div id="dual-range-price" class="coopleo-dual-range">
-                        <input type="range" class="range-start" min="0" max="150" value="0">
-                        <input type="range" class="range-end" min="0" max="150" value="150">
+                        <input type="range" class="range-start" min="0" max="240" value="0">
+                        <input type="range" class="range-end" min="0" max="240" value="240">
                     </div>
                 </div>
                 <div class="coopleo-advenced-filters-group perimeter-filters-container">
                     <label class="label" for="perimeter">Périmètre de recherche</label>
                     <div>
-                        <input type="number" id="perimeter" name="perimetre" placeholder="Km" min="0" max="150" value="150">
+                        <input type="number" id="perimeter" name="perimetre" placeholder="Km" min="0" max="150" value="20">
                         <span>km</span>
                     </div>
                     <div id="dual-range-perimeter" class="coopleo-dual-range no-start">
                         <input type="range" class="range-start" min="0" max="150" value="0">
-                        <input type="range" class="range-end" min="0" max="150" value="150">
+                        <input type="range" class="range-end" min="0" max="150" value="20">
                     </div>
                 </div>
                 <div class="coopleo-advenced-filters-group dispo-filters-container">
@@ -234,7 +235,21 @@
                         <option value="all">Toutes les langues</option>
                         <option value="fr">Français</option>
                         <option value="en">Anglais</option>
+                        <option value="es">Espagnol</option>
                     </select>
+                </div>
+                <div class="coopleo-advenced-filters-group dispo-filters-container">
+                    <span class="label">Autres créneaux</span>
+                    <div class="dispo-filters-inputs">
+                        <label>
+                            <span>En soirée</span>
+                            <input type="checkbox" name="available_night" value="true" />
+                        </label>
+                        <label>
+                            <span>Le week-end</span>
+                            <input type="checkbox" name="available_weekend" value="true" />
+                        </label>
+                    </div>
                 </div>
                 <div class="coopleo-advenced-filters-group dispo-filters-container">
                     <span class="label">Prise de rendez-vous</span>
@@ -347,7 +362,8 @@
     // Reset filters & form submit
     resetFilters.addEventListener('click', () => {
         form.reset();
-        dualRange.update({start: 0, end: 150})
+        dualRange.update({start: 0, end: 240})
+        dualRangePerimeter.update({start: 0, end: 20})
     })
 
     form.addEventListener('submit', function(e){
@@ -383,6 +399,7 @@
     const addressInput = document.querySelector("#coopleo-search input[name='address']");
     const adressResults = document.getElementById('coopleo-address-results');
     const cityInput = document.querySelector("#coopleo-search input[name='city']");
+    const cpInput = document.querySelector("#coopleo-search input[name='cp']");
     let hasAddressCompletion = false;
     let focusedAddressCompletion = 0;
     let addressCompletionOptions = [];
@@ -440,6 +457,7 @@
         latInput.value = '';
         lngInput.value = '';
         cityInput.value = '';
+        cpInput.value = '';
         if (addressTimeoutId) {
             clearTimeout(addressTimeoutId);
         }
@@ -465,6 +483,7 @@
             const addresses = await getAddressByPosition(position.coords.latitude, position.coords.longitude)
             addressInput.value = addresses.features[0].properties.label;
             cityInput.value = addresses.features[0].properties.city;
+            cpInput.value = addresses.features[0].properties.postcode;
         }, (err) => {
             if (err.code === 1) {
                 alert('Veuillez autoriser la géolocalisation dans votre navigateur.');
@@ -511,6 +530,7 @@
                 latInput.value = result.geometry.coordinates[1];
                 lngInput.value = result.geometry.coordinates[0];
                 cityInput.value = result.properties.city;
+                cpInput.value = result.properties.postcode;
                 resetAddressAutocomplete();
             });
             groupResults.appendChild(resultElement);
@@ -596,8 +616,8 @@
         })
         resetautocomplete();
         displaySearchAutocompleteResults("Problématiques", results.cat_problematique);
-        displaySearchAutocompleteResults("Type de thérapeutes", results.type_de_therapeute);
-        displaySearchAutocompleteResults("Thérapeutes", results.therapeutes);
+        displaySearchAutocompleteResults("Type de praticiens", results.type_de_therapeute);
+        displaySearchAutocompleteResults("Praticiens", results.therapeutes);
     }
 
     function displaySearchAutocompleteResults(group, results){
@@ -726,6 +746,9 @@
             if(urlParamsObj.city){
                 cityInput.value = urlParamsObj.city;
             }
+            if(urlParamsObj.cp){
+                cpInput.value = urlParamsObj.cp;
+            }
             if(urlParamsObj.min_price){
                 minPrice.value = urlParamsObj.min_price;
             }
@@ -737,6 +760,12 @@
             }
             if (urlParamsObj.has_online_calendar) {
                document.querySelector("#coopleo-search input[name='has_online_calendar']").checked = true;
+            }
+            if (urlParamsObj.available_night) {
+               document.querySelector("#coopleo-search input[name='available_night']").checked = true;
+            }
+            if (urlParamsObj.available_weekend) {
+               document.querySelector("#coopleo-search input[name='available_weekend']").checked = true;
             }
             if (urlParamsObj.type) {
                 const toCheck = document.querySelector(".coopleo-rdv-type-container input[value='" + urlParamsObj.type + "']");

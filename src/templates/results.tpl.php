@@ -31,6 +31,10 @@
        </div>
     </div>
     <div id="coopleo-results-container"></div>
+    <div id="coopleo-no-results">
+        <p>Nous n'avons pas de professionnel à proximité.</p>
+        <p>L'accompagnement en visioconférence est une véritable aide. N'hésitez pas à élargir votre recherche en sélectionnant Visioconférence.</p>
+    </div>
     <?php if (!($vars["hasPagination"] !== "true")) { ?>
         <div id="coopleo-results-pagination-container">
             <button type="button" id="coopleo-results-pagination-previous" class="coopleo-button coopleo-button-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg></button>
@@ -145,14 +149,14 @@
                                 <path id="Tracé_277" data-name="Tracé 277" d="M10.688,46.867H4.47C1.632,46.867,0,45.306,0,42.593V36.274C0,33.561,1.632,32,4.47,32h6.219c2.837,0,4.47,1.561,4.47,4.274v6.319c0,2.713-1.632,4.274-4.47,4.274M4.47,33.115c-2.223,0-3.3,1.033-3.3,3.159v6.319c0,2.126,1.081,3.159,3.3,3.159h6.219c2.223,0,3.3-1.033,3.3-3.159V36.274c0-2.126-1.08-3.159-3.3-3.159Z" transform="translate(0 -30.885)" fill="#fff"/>
                             </g>
                         </svg>
-                        <span data-target-tpl="button-label"></span>
+                        <span>Prendre RDV</span>
                     </a>
                 </div>
             </div>
         </div>
         <div class="result-card-calendar">
             <div class="days-list"></div>
-            <a href="" class="result-card-calendar-more" data-target-tpl="calendar-more-link">Plus de créneaux</a>
+            <a href="#" class="result-card-calendar-more" data-target-tpl="calendar-more-link">Plus de créneaux</a>
         </div>
     </div>
 </template>
@@ -227,6 +231,7 @@
     const lang = {
         "english": "Anglais",
         "french": "Français",
+        "spanish": "Espagnol"
     }
 
     nextPageButton.addEventListener("click", () => {
@@ -352,11 +357,6 @@
             deleteTplElement(result, ".rdv-type-visio");
         }
         replaceTplContent(result, "langue", langLabel);
-        if (data.next_avail_date.match(/\d{4}-\d{2}-\d{2}/)) {
-            replaceTplContent(result, "button-label", "RDV - " + DateTime.fromISO(data.next_avail_date).setLocale("fr").toFormat("dd LLL"));
-        }else{
-            replaceTplContent(result, "button-label", "Prendre RDV");
-        }
 
         generateCalendarOfCard(result, data);
 
