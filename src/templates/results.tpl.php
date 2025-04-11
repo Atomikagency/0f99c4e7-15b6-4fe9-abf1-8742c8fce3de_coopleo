@@ -149,7 +149,7 @@
                                 <path id="Tracé_277" data-name="Tracé 277" d="M10.688,46.867H4.47C1.632,46.867,0,45.306,0,42.593V36.274C0,33.561,1.632,32,4.47,32h6.219c2.837,0,4.47,1.561,4.47,4.274v6.319c0,2.713-1.632,4.274-4.47,4.274M4.47,33.115c-2.223,0-3.3,1.033-3.3,3.159v6.319c0,2.126,1.081,3.159,3.3,3.159h6.219c2.223,0,3.3-1.033,3.3-3.159V36.274c0-2.126-1.08-3.159-3.3-3.159Z" transform="translate(0 -30.885)" fill="#fff"/>
                             </g>
                         </svg>
-                        <span>Prendre rendez-vous</span>
+                        <span data-target-tpl="button-label"></span>
                     </a>
                 </div>
             </div>
@@ -157,6 +157,31 @@
         <div class="result-card-calendar">
             <div class="days-list"></div>
             <a href="#" class="result-card-calendar-more" data-target-tpl="calendar-more-link">Plus de créneaux</a>
+            <div class="result-card-calendar-no-amelia">
+                <p>Calendrier indisponible</p>
+                <a href="#" class="coopleo-button" data-target-tpl="button-link-calendar">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_516" data-name="Groupe 516" width="15.158" height="15.982" viewBox="0 0 15.158 15.982">
+                        <defs>
+                            <clipPath id="clip-path">
+                            <rect id="Rectangle_817" data-name="Rectangle 817" width="15.158" height="15.982" fill="#fff"/>
+                            </clipPath>
+                        </defs>
+                        <g id="Groupe_515" data-name="Groupe 515" clip-path="url(#clip-path)">
+                            <path id="Tracé_268" data-name="Tracé 268" d="M107.25,3.345a.575.575,0,0,1-.583-.558V.558a.584.584,0,0,1,1.166,0v2.23a.575.575,0,0,1-.583.558" transform="translate(-102.78)" fill="#fff"/>
+                            <path id="Tracé_269" data-name="Tracé 269" d="M277.916,3.345a.575.575,0,0,1-.583-.558V.558a.584.584,0,0,1,1.166,0v2.23a.575.575,0,0,1-.583.558" transform="translate(-267.228)" fill="#fff"/>
+                            <path id="Tracé_270" data-name="Tracé 270" d="M112.777,241.6a.869.869,0,0,1-.552-.216.751.751,0,0,1-.225-.528.713.713,0,0,1,.062-.283.854.854,0,0,1,.163-.245.808.808,0,0,1,.257-.156.821.821,0,0,1,.847.156.764.764,0,0,1,.225.528,1.072,1.072,0,0,1-.016.149.459.459,0,0,1-.047.134.555.555,0,0,1-.07.134,1.178,1.178,0,0,1-.093.112A.837.837,0,0,1,112.777,241.6Z" transform="translate(-107.919 -231.754)" fill="#fff"/>
+                            <path id="Tracé_271" data-name="Tracé 271" d="M187.444,241.508a.869.869,0,0,1-.552-.216.751.751,0,0,1-.225-.528.713.713,0,0,1,.062-.282.854.854,0,0,1,.163-.245.829.829,0,0,1,1.1,0,.764.764,0,0,1,.225.528,1.07,1.07,0,0,1-.016.149.459.459,0,0,1-.047.134.554.554,0,0,1-.07.134,1.179,1.179,0,0,1-.093.112A.837.837,0,0,1,187.444,241.508Z" transform="translate(-179.865 -231.659)" fill="#fff"/>
+                            <path id="Tracé_272" data-name="Tracé 272" d="M262.111,241.508a.869.869,0,0,1-.552-.216l-.093-.112a.552.552,0,0,1-.07-.134.459.459,0,0,1-.047-.134,1.068,1.068,0,0,1-.016-.149.764.764,0,0,1,.225-.528.829.829,0,0,1,1.1,0,.764.764,0,0,1,.225.528,1.072,1.072,0,0,1-.015.149.459.459,0,0,1-.047.134.553.553,0,0,1-.07.134,1.182,1.182,0,0,1-.093.112A.837.837,0,0,1,262.111,241.508Z" transform="translate(-251.812 -231.659)" fill="#fff"/>
+                            <path id="Tracé_273" data-name="Tracé 273" d="M112.777,316.412a.8.8,0,0,1-.3-.059.9.9,0,0,1-.257-.156.764.764,0,0,1-.225-.528.713.713,0,0,1,.062-.283.691.691,0,0,1,.163-.245.842.842,0,0,1,1.1,0,.731.731,0,0,1,0,1.055.837.837,0,0,1-.552.216" transform="translate(-107.919 -303.96)" fill="#fff"/>
+                            <path id="Tracé_274" data-name="Tracé 274" d="M187.444,316.412a.837.837,0,0,1-.552-.216.764.764,0,0,1-.225-.528.713.713,0,0,1,.062-.283.691.691,0,0,1,.163-.245.842.842,0,0,1,1.1,0,.691.691,0,0,1,.163.245.713.713,0,0,1,.062.283.764.764,0,0,1-.225.528.837.837,0,0,1-.552.216" transform="translate(-179.865 -303.96)" fill="#fff"/>
+                            <path id="Tracé_275" data-name="Tracé 275" d="M262.111,316.134a.837.837,0,0,1-.552-.216.691.691,0,0,1-.163-.245.673.673,0,0,1,0-.565.691.691,0,0,1,.163-.245.8.8,0,0,1,.7-.2.484.484,0,0,1,.148.045.6.6,0,0,1,.14.067,1.215,1.215,0,0,1,.117.089.731.731,0,0,1,0,1.056A.837.837,0,0,1,262.111,316.134Z" transform="translate(-251.812 -303.683)" fill="#fff"/>
+                            <path id="Tracé_276" data-name="Tracé 276" d="M24.464,152.365H11.249a.558.558,0,1,1,0-1.115H24.464a.558.558,0,1,1,0,1.115" transform="translate(-10.277 -145.98)" fill="#fff"/>
+                            <path id="Tracé_277" data-name="Tracé 277" d="M10.688,46.867H4.47C1.632,46.867,0,45.306,0,42.593V36.274C0,33.561,1.632,32,4.47,32h6.219c2.837,0,4.47,1.561,4.47,4.274v6.319c0,2.713-1.632,4.274-4.47,4.274M4.47,33.115c-2.223,0-3.3,1.033-3.3,3.159v6.319c0,2.126,1.081,3.159,3.3,3.159h6.219c2.223,0,3.3-1.033,3.3-3.159V36.274c0-2.126-1.08-3.159-3.3-3.159Z" transform="translate(0 -30.885)" fill="#fff"/>
+                        </g>
+                    </svg>
+                    <span>Contacter</span>
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -326,6 +351,7 @@
 
     function generateResult(data){
         const result = resultTpl.content.cloneNode(true);
+        let hasAmelia = !!(data.amelia_id > 0);
         const langLabel = Object.entries(data.langue_parlee).filter((key, value) => !!value).map(([key, value]) => {
             return lang[key];
         }).join(", ");
@@ -353,6 +379,16 @@
         if(data.link){
             result.querySelector("[data-target-tpl='button-link']").href = data.link;
             result.querySelector("[data-target-tpl='calendar-more-link']").href = data.link;
+            if (!hasAmelia) {
+                result.querySelector("[data-target-tpl='button-link-calendar']").href = data.link;
+            }
+        }
+
+        if (hasAmelia) {
+            replaceTplContent(result, "button-label", "Prendre rendez-vous");
+            deleteTplElement(result, ".result-card-calendar-no-amelia");
+        }else{
+            replaceTplContent(result, "button-label", "Contacter");
         }
 
         if (!data.types_disponibilites.includes("cabinet")) {
@@ -383,11 +419,11 @@
         const dayList = elem.querySelector(".days-list");
         dayList.innerHTML = "";
         const today = DateTime.local();
-        let lundi = today.minus({ days: today.weekday - 1 });
+        let firstDay = today;
         if ((filters.first_available && filters.first_available === "next_week") || today.weekday > 5) {
-            lundi = lundi.plus({ weeks: 1 });
+            firstDay = firstDay.minus({ days: today.weekday - 1 }).plus({ weeks: 1 });
         }
-        const jours = Array.from({ length: 5 }, (_, i) => lundi.plus({ days: i }));
+        const jours = Array.from({ length: 5 }, (_, i) => firstDay.plus({ days: i }));
 
         jours.forEach((jour) => {
             const tpl = resultDayTpl.content.cloneNode(true);

@@ -277,6 +277,7 @@
     const form = document.getElementById('coopleo-search');
     const resetFilters = document.getElementById('coopleo-reset-filters-button');
     const autocompleteData = <?php echo json_encode($vars["autocompleteData"], JSON_UNESCAPED_UNICODE); ?>;
+    const iaSearchURL = "<?php echo COOPLEO_API_ENDPOINT_AI; ?>";
 
     // Modal management
     const advencedFiltersModalBackdrop = document.getElementById('advenced-filters-modal-backdrop');
@@ -614,10 +615,22 @@
         Object.entries(autocompleteData).forEach(([key, values]) => {
             results[key] = filterAndSort(search, values);
         })
-        resetautocomplete();
-        displaySearchAutocompleteResults("Problématiques", results.cat_problematique);
-        displaySearchAutocompleteResults("Type de praticiens", results.type_de_therapeute);
-        displaySearchAutocompleteResults("Praticiens", results.therapeutes);
+
+        if (!Object.values(results).flat().length) {
+            timeoutId = setTimeout(() => {
+                fetchAiAutocomplete(search).then(res => {
+                    if (res) {
+                        resetautocomplete();
+                        displaySearchAutocompleteResults("Problématiques", [res]);
+                    }
+                });
+            }, 300);
+        }else{
+            resetautocomplete();
+            displaySearchAutocompleteResults("Problématiques", results.cat_problematique);
+            displaySearchAutocompleteResults("Type de praticiens", results.type_de_therapeute);
+            displaySearchAutocompleteResults("Praticiens", results.therapeutes);
+        }
     }
 
     function displaySearchAutocompleteResults(group, results){
@@ -709,9 +722,9 @@
     function filterAndSort(search, candidates, maxDistanceRatio = 0.1) {
         const searchPre = preprocessString(search);
         const threshold = Math.max(1, Math.floor(searchPre.length * maxDistanceRatio));
-        
+
         const results = [];
-        
+
         for (const candidate of candidates) {
             const candidatePre = preprocessString(candidate);
             const distance = levenshtein(searchPre, candidatePre);
@@ -719,12 +732,28 @@
                 results.push({ candidate, distance });
             }
         }
-        
+
         // Trie par distance (plus petite distance en premier)
         results.sort((a, b) => a.distance - b.distance);
-        
+
         // Retourne uniquement la liste des valeurs candidates
         return results.map(item => item.candidate);
+    }
+
+    async function fetchAiAutocomplete(search){
+        try{
+            const response = await fetch(iaSearchURL + "?search=" + search);
+            if(!response.ok){
+                throw new Error("Network response was not ok");
+            }
+            const results = await response.json();
+            if (results && results.search) {
+                return results.search;
+            }
+            return undefined
+        }catch(e){
+            console.log(e);
+        }
     }
 
     window.addEventListener("DOMContentLoaded", () => {

@@ -12,6 +12,7 @@ define('COOPLEO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('COOPLEO_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('COOPLEO_SEARCH_PAGE_RESULT', 57114);
 define('COOPLEO_API_ENDPOINT','https://coopleo.api.demo.atomikagency.fr/api/search');
+define('COOPLEO_API_ENDPOINT_AI','https://coopleo.api.demo.atomikagency.fr/api/ia_autocomplete');
 
 if (!defined('ABSPATH')) {
     exit; // Prevent direct access
