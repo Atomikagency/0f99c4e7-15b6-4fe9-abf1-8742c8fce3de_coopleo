@@ -37,7 +37,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <span class="<?php ($vars['whiteLabelColor']) ? 'label-white' : '' ?> ">Votre rendez-vous</span>
+                        <span class="<?php echo ($vars['whiteLabelColor']) ? 'label-white' : '' ?> ">Votre rendez-vous</span>
                     </p>
                     <div class="coopleo-rdv-type-choices">
                         <label>

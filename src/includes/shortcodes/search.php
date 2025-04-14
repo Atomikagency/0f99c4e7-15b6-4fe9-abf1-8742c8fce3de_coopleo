@@ -1,19 +1,18 @@
 <?php
 
 function coopleo_search_shortcode($atts) {
+
     $atts = shortcode_atts(array(
-        'isRedirect' => 'false',
-        'hasAdvancedFilters' => 'true',
-        'whiteLabelColor' => 'false'
+        'isredirect' => 'false',
+        'hasadvancedfilters' => 'true',
+        'whitelabelcolor' => 'false'
     ), $atts, 'coopleo_search');
 
-    $isRedirect = filter_var($atts['isRedirect'], FILTER_VALIDATE_BOOLEAN);
-    $hasAdvancedFilters = filter_var($atts['hasAdvancedFilters'], FILTER_VALIDATE_BOOLEAN);
-    $whiteLabelColor = filter_var($atts['whiteLabelColor'], FILTER_VALIDATE_BOOLEAN);
+    $isRedirect = filter_var($atts['isredirect'], FILTER_VALIDATE_BOOLEAN);
+    $hasAdvancedFilters = filter_var($atts['hasadvancedfilters'], FILTER_VALIDATE_BOOLEAN);
+    $whiteLabelColor = filter_var($atts['whitelabelcolor'], FILTER_VALIDATE_BOOLEAN);
     ob_start();
-
     $searchPageResultUrl = get_permalink(COOPLEO_SEARCH_PAGE_RESULT);
-
 
     $autocompleteSearch = [];
 
