@@ -37,7 +37,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <span>Votre rendez-vous</span>
+                        <span class="<?php ($vars['whiteLabelColor']) ? 'label-white' : '' ?> ">Votre rendez-vous</span>
                     </p>
                     <div class="coopleo-rdv-type-choices">
                         <label>
@@ -164,7 +164,7 @@
         </div>
     </div>
 
-    <?php if ($vars['hasAdvencedFilters']) { ?>
+    <?php if ($vars['hasAdvancedFilters']) { ?>
         <button type="button" class="coopleo-button coopleo-button-secondary" id="advenced-filters-toggle" style="margin-top: .625rem;">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_563" data-name="Groupe 563" width="15.535" height="12.428" viewBox="0 0 15.535 12.428">
                 <defs>

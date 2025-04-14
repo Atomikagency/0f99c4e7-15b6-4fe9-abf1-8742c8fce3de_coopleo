@@ -3,11 +3,13 @@
 function coopleo_search_shortcode($atts) {
     $atts = shortcode_atts(array(
         'isRedirect' => 'false',
-        'hasAdvencedFilters' => 'true',
+        'hasAdvancedFilters' => 'true',
+        'whiteLabelColor' => 'false'
     ), $atts, 'coopleo_search');
 
     $isRedirect = filter_var($atts['isRedirect'], FILTER_VALIDATE_BOOLEAN);
-    $hasAdvencedFilters = filter_var($atts['hasAdvencedFilters'], FILTER_VALIDATE_BOOLEAN);
+    $hasAdvancedFilters = filter_var($atts['hasAdvancedFilters'], FILTER_VALIDATE_BOOLEAN);
+    $whiteLabelColor = filter_var($atts['whiteLabelColor'], FILTER_VALIDATE_BOOLEAN);
     ob_start();
 
     $searchPageResultUrl = get_permalink(COOPLEO_SEARCH_PAGE_RESULT);
@@ -59,8 +61,10 @@ function coopleo_search_shortcode($atts) {
         'searchPageResultUrl' => $searchPageResultUrl,
         'api_endpoint' => COOPLEO_API_ENDPOINT,
         'autocompleteData' => $autocompleteSearch,
-        'hasAdvencedFilters' => $hasAdvencedFilters,
+        'hasAdvancedFilters' => $hasAdvancedFilters,
+        'whiteLabelColor' => $whiteLabelColor
     ];
+
 
     include COOPLEO_PLUGIN_DIR . 'templates/search.tpl.php';
     return ob_get_clean();

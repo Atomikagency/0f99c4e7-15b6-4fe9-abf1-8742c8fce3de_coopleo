@@ -17,6 +17,10 @@
             color: #000;
             font-weight: bold;
             font-size: 0.75rem;
+
+            &.label-white {
+                color:white !important;
+            }
         }
     }
 
@@ -510,6 +514,7 @@
             cursor: pointer;
             height: 42px;
             align-items: center;
+            background:white;
 
             & p{ margin: 0; }
 
