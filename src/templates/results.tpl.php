@@ -352,7 +352,7 @@
     function generateResult(data){
         const result = resultTpl.content.cloneNode(true);
         let hasAmelia = !!(data.amelia_id > 0);
-        const langLabel = Object.entries(data.langue_parlee).filter((key, value) => !!value).map(([key, value]) => {
+        const langLabel = Object.entries(data.langue_parlee).filter(([key, value]) => !!value).map(([key, value]) => {
             return lang[key];
         }).join(", ");
 
