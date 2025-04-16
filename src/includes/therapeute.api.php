@@ -99,8 +99,8 @@ function add_taxonomy_names_to_rest($response, $post, $request) {
         $terms = get_the_terms($post->ID, $taxonomy);
 
         if (!empty($terms) && !is_wp_error($terms)) {
-            $term_names = wp_list_pluck($terms, 'name'); // Récupère uniquement les noms
-            $response->data[$taxonomy] = $term_names;
+            $term_names = wp_list_pluck($terms, 'name');
+            $response->data[$taxonomy . '_text'] = $term_names;
         }
     }
 
