@@ -360,7 +360,14 @@
             result.querySelector(".result-card-therapist-infos img").src = data.photo_link;
         }
         replaceTplContent(result, "name", data.name);
-        replaceTplContent(result, "type", data.type_therapist[0] ?? '');
+        
+
+        if (filters.q && data.type_therapist.includes(filters.q)) {
+            replaceTplContent(result, "type", data.type_therapist.find((type) => type.toLowerCase() === filters.q.toLowerCase()) ?? '');
+        }else{
+            replaceTplContent(result, "type", data.type_therapist[0] ?? '');
+        }
+
         if (data.localisation.adresse) {
             replaceTplContent(result, "address", data.localisation.adresse.split(",").find(el => el.match(/\d{5}/)) ?? data.localisation.adresse);
         }else{
