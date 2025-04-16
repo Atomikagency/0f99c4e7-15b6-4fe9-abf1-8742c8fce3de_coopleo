@@ -22,6 +22,7 @@ if (!defined('ABSPATH')) {
 require_once  COOPLEO_PLUGIN_DIR.'/includes/therapeute.api.php';
 require_once  COOPLEO_PLUGIN_DIR.'/includes/shortcodes/search.php';
 require_once  COOPLEO_PLUGIN_DIR.'/includes/shortcodes/result.php';
+require_once  COOPLEO_PLUGIN_DIR.'/includes/welcome-email-on-register.php';
 
 
 require_once COOPLEO_PLUGIN_DIR . 'update-checker.php';
