@@ -1,6 +1,7 @@
 <?php
 
-function coopleo_search_shortcode($atts) {
+function coopleo_search_shortcode($atts)
+{
 
     $atts = shortcode_atts(array(
         'isredirect' => 'false',
@@ -54,6 +55,22 @@ function coopleo_search_shortcode($atts) {
         set_transient($cache_key, $autocompleteSearch, 3600);
     }
 
+    $listWords = [
+        'une sexologue',
+        'un coach de couple',
+        'une psychologue de couple',
+        'un médiateur familial',
+        'une conseillere conjugale et familiale',
+        'un sexothérapeute',
+        'une médiatrice familiale',
+        'un thérapeute de couple',
+        'un conseiller conjugal et familial',
+        'un sexologue',
+        'une coach de couple',
+        'un psychologue de couple',
+        'une thérapeute de couple',
+        'une sexothérapeute'
+    ];
 
     $vars = [
         'isRedirect' => $isRedirect,
@@ -61,7 +78,8 @@ function coopleo_search_shortcode($atts) {
         'api_endpoint' => COOPLEO_API_ENDPOINT,
         'autocompleteData' => $autocompleteSearch,
         'hasAdvancedFilters' => $hasAdvancedFilters,
-        'whiteLabelColor' => $whiteLabelColor
+        'whiteLabelColor' => $whiteLabelColor,
+        'listWords' => $listWords
     ];
 
 
