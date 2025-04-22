@@ -18,6 +18,7 @@
         & h1 {
             font-size: 1.875rem;
             font-family: inherit;
+            min-height: 2.5em;
 
             & span.underline {
                 position: relative;
@@ -44,7 +45,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
-            margin-top: 1.25rem;
+            margin-top: .25rem;
 
             & label {
                 color: var(--coopleo-tertiary);

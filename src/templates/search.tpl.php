@@ -166,19 +166,33 @@
     </div>
 
     <?php if ($vars['hasAdvancedFilters']) { ?>
-        <button type="button" class="coopleo-button coopleo-button-secondary" id="advenced-filters-toggle" style="margin-top: .625rem;">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_563" data-name="Groupe 563" width="15.535" height="12.428" viewBox="0 0 15.535 12.428">
-                <defs>
-                    <clipPath id="clip-path">
-                    <rect id="Rectangle_845" data-name="Rectangle 845" width="15.535" height="12.428" fill="#3f3f46"/>
-                    </clipPath>
-                </defs>
-                <g id="Groupe_563-2" data-name="Groupe 563" clip-path="url(#clip-path)">
-                    <path id="Tracé_281" data-name="Tracé 281" d="M12.428,6.214A3.107,3.107,0,1,0,9.419,2.33H.777a.777.777,0,0,0,0,1.554H9.419a3.108,3.108,0,0,0,3.009,2.33M10.875,3.107a1.554,1.554,0,1,0,1.553-1.553,1.553,1.553,0,0,0-1.553,1.553M0,9.321a3.107,3.107,0,0,1,6.116-.777h8.642a.777.777,0,1,1,0,1.553H6.116A3.107,3.107,0,0,1,0,9.321Zm4.661,0a1.554,1.554,0,1,0-1.554,1.554A1.554,1.554,0,0,0,4.661,9.321" fill="#3f3f46" fill-rule="evenodd"/>
-                </g>
-            </svg>
-            <span>Filtres avancés</span>
-        </button>
+        <div style="display:flex; align-items: center; gap: 2.5rem; margin-top: .625rem;">
+            <button type="button" class="coopleo-button coopleo-button-secondary" id="advenced-filters-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_563" data-name="Groupe 563" width="15.535" height="12.428" viewBox="0 0 15.535 12.428">
+                    <defs>
+                        <clipPath id="clip-path">
+                        <rect id="Rectangle_845" data-name="Rectangle 845" width="15.535" height="12.428" fill="#3f3f46"/>
+                        </clipPath>
+                    </defs>
+                    <g id="Groupe_563-2" data-name="Groupe 563" clip-path="url(#clip-path)">
+                        <path id="Tracé_281" data-name="Tracé 281" d="M12.428,6.214A3.107,3.107,0,1,0,9.419,2.33H.777a.777.777,0,0,0,0,1.554H9.419a3.108,3.108,0,0,0,3.009,2.33M10.875,3.107a1.554,1.554,0,1,0,1.553-1.553,1.553,1.553,0,0,0-1.553,1.553M0,9.321a3.107,3.107,0,0,1,6.116-.777h8.642a.777.777,0,1,1,0,1.553H6.116A3.107,3.107,0,0,1,0,9.321Zm4.661,0a1.554,1.554,0,1,0-1.554,1.554A1.554,1.554,0,0,0,4.661,9.321" fill="#3f3f46" fill-rule="evenodd"/>
+                    </g>
+                </svg>
+                <span>Filtres avancés</span>
+            </button>
+            <label class="coopleo-free-rdv-checkbox">
+                <input type="checkbox" name="free-rdv" id="free-rdv">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span class="coopleo-free-rdv-checkbox-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                    </span>
+                    <div class="coopleo-free-rdv-checkbox-label">
+                        <span>NEW ! 1er RDV gratuit</span>
+                        <span>10min en visio ou téléphone</span>
+                    </div>
+                </div>
+            </label>
+        </div>
     <?php } ?>
 
     <div id="coopleo-advenced-filters-modal" style="display: none;">
@@ -642,9 +656,9 @@
         if (!Object.values(results).flat().length) {
             timeoutId = setTimeout(() => {
                 fetchAiAutocomplete(search).then(res => {
-                    if (res) {
+                    if (res && res.length) {
                         resetautocomplete();
-                        displaySearchAutocompleteResults("Problématiques", [res]);
+                        displaySearchAutocompleteResults("Problématiques", Array.isArray(res) ? res : [res]);
                     }
                 });
             }, 300);
