@@ -41,7 +41,7 @@
                     </p>
                     <div class="coopleo-rdv-type-choices">
                         <label>
-                            <input type="checkbox" name="type_cabinet" value="cabinet">
+                            <input type="checkbox" name="type_cabinet" value="cabinet" checked>
                             <span class="svg-container">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_634" data-name="Groupe 634" width="16.853" height="16.845" viewBox="0 0 16.853 16.845">
                                     <defs>
@@ -112,8 +112,9 @@
                                 </svg>
                                 <span>Localisation</span>
                             </span>
-                            <div class="input-container">
+                            <div class="input-container" style="position: relative;">
                                 <input type="text" name="address" placeholder="Lieu de consultation" />
+                                <small class="coopleo-input-address-error" style="display: none;">Veuillez sélectionner une adresse dans la liste</small>
                             </div>
                             <input type="hidden" name="lat">
                             <input type="hidden" name="lng">
@@ -401,6 +402,7 @@
     const adressResults = document.getElementById('coopleo-address-results');
     const cityInput = document.querySelector("#coopleo-search input[name='city']");
     const cpInput = document.querySelector("#coopleo-search input[name='cp']");
+    const addressInputError = document.querySelector(".coopleo-input-address-error");
     let hasAddressCompletion = false;
     let focusedAddressCompletion = 0;
     let addressCompletionOptions = [];
@@ -453,6 +455,15 @@
         });
     }
 
+    function showError(){
+        addressInputError.style.display = 'block';
+        addressInput.classList.add('error');
+    }
+    function hideError(){
+        addressInputError.style.display = 'none';
+        addressInput.classList.remove('error');
+    }
+
     addressInput.addEventListener('input', function(e){
         const value = e.target.value;
         latInput.value = '';
@@ -473,8 +484,19 @@
 
     addressInput.addEventListener('blur', () => {
         setTimeout(() => {
+            if(addressInput.value && (!latInput.value || !lngInput.value)){
+                showError();
+            }else{
+                hideError();
+            }
             resetAddressAutocomplete();
         }, 300);
+    });
+
+    addressInput.addEventListener('focus', () => {
+        if(addressInput.value && (!latInput.value || !lngInput.value)){
+            searchByAddress(addressInput.value);
+        }
     });
 
     function getUserPosition(){
@@ -533,6 +555,7 @@
                 cityInput.value = result.properties.city;
                 cpInput.value = result.properties.postcode;
                 resetAddressAutocomplete();
+                hideError();
             });
             groupResults.appendChild(resultElement);
             addressCompletionOptions.push(resultElement);

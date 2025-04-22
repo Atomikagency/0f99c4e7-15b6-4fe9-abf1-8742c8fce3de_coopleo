@@ -101,6 +101,19 @@
                 border: none;
                 background: none;
             }
+
+            & input[name="address"].error{
+                color: var(--coopleo-primary)
+            }
+
+            & input[name="address"] + small.coopleo-input-address-error {
+                position: absolute;
+                top: calc(100% + 2px);
+                left: 1rem;
+                font-size: .625rem;
+                line-height: 1em;
+                color: var(--coopleo-primary)
+            }
         }
 
         & .coopleo-rdv-filters-buttons {

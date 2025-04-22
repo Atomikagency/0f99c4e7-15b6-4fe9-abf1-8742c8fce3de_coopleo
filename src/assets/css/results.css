@@ -105,6 +105,7 @@
         grid-template-columns: 1fr 1fr;
         border-radius: var(--coopleo-radius);
         background-color: var(--coopleo-result-card-bg);
+        color: inherit;
 
         & .result-card-therapist {
             background-color: #fff;
@@ -267,6 +268,7 @@
                 font-weight: bold;
                 text-decoration: underline;
                 text-underline-offset: .25rem;
+                color: var(--coopleo-primary);
             }
         }
     }

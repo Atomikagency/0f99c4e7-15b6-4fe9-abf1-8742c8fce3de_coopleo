@@ -8,7 +8,7 @@
 ?>
 <div id="coopleo-results">
     <div class="header">
-        <h1><span class="underline">Prendre rendez-vous</span> avec un <span id="coopleo-type-effect"><?php echo $vars['type_de_therapeute'][0]; ?></span></h1>
+        <h1><span class="underline">Prendre rendez-vous</span> avec <span id="coopleo-type-effect"><?php echo $vars['listWords'][0]; ?></span></h1>
        <div id="coopleo-results-count-container">
             <p data-target-tpl="results-count"></p>
             <label>
@@ -58,7 +58,7 @@
 </div>
 
 <template id="coopleo-result-tpl">
-    <div class="result-card">
+    <a href="#" class="result-card" data-target-tpl="button-link">
         <div class="result-card-therapist">
             <div class="result-card-therapist-infos">
                 <img src="" alt="Photo de profil">
@@ -129,7 +129,7 @@
                             </g>
                         </svg>
                    </div>
-                   <a href="#" class="coopleo-button" data-target-tpl="button-link">
+                   <span class="coopleo-button" >
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_516" data-name="Groupe 516" width="15.158" height="15.982" viewBox="0 0 15.158 15.982">
                             <defs>
                                 <clipPath id="clip-path">
@@ -150,16 +150,16 @@
                             </g>
                         </svg>
                         <span data-target-tpl="button-label"></span>
-                    </a>
+                    </span>
                 </div>
             </div>
         </div>
         <div class="result-card-calendar">
             <div class="days-list"></div>
-            <a href="#" class="result-card-calendar-more" data-target-tpl="calendar-more-link">Plus de créneaux</a>
+            <span class="result-card-calendar-more">Plus de créneaux</span>
             <div class="result-card-calendar-no-amelia">
                 <p>Calendrier indisponible</p>
-                <a href="#" class="coopleo-button" data-target-tpl="button-link-calendar">
+                <span class="coopleo-button">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_516" data-name="Groupe 516" width="15.158" height="15.982" viewBox="0 0 15.158 15.982">
                         <defs>
                             <clipPath id="clip-path">
@@ -180,10 +180,10 @@
                         </g>
                     </svg>
                     <span>Contacter</span>
-                </a>
+                </span>
             </div>
         </div>
-    </div>
+    </a>
 </template>
 
 <template id="coopleo-result-day-tpl">
@@ -193,8 +193,8 @@
             <p class="day-date" data-target-tpl="day-date"></p>
         </div>
         <div class="day-availablilty">
-            <a class="available-morning">Matin</a>
-            <a class="available-afternoon">Après-midi</a>
+            <span class="available-morning">Matin</span>
+            <span class="available-afternoon">Après-midi</span>
         </div>
     </div>
 </template>
@@ -213,7 +213,7 @@
     const sortBySelect = document.getElementById("coopleo-sort-by");
     const sortByLocationOption = document.getElementById("coopleo-sort-by-location");
     const noResultsContainer = document.querySelector("#coopleo-results #coopleo-no-results");
-    let filters = {"q":"","address":"","lat":"","lng":"","min_price":"0","max_price":"240","perimetre":"20"};
+    let filters = {"q":"","address":"","lat":"","lng":"","type":"cabinet","min_price":"0","max_price":"240","perimetre":"20"};
     let perPage = <?php echo $vars["limit"]; ?>;
     let currentPage = 1;
     let totalPages = 1;
@@ -300,6 +300,10 @@
             delete filters.langue
         }
 
+        if (filters.address && (!filters.lat || !filters.lng)) {
+            filters.address = "";
+        }
+
         if (filters.has_online_calendar){
             filters.has_online_calendar = true;
         }
@@ -335,6 +339,11 @@
     }
 
     function generatePagination(pagination){
+        if (pagination === undefined) {
+            replaceTplContent(main, "results-count", "0 résultat");
+            return;
+        }
+        
         totalPages = pagination.last_page;
         replaceTplContent(main, "page-number", `Page ${currentPage} sur ${pagination.last_page}`);
         let resultCountSentence = `${pagination.total} résultat${pagination.total > 1 ? "s" : ""}`;
@@ -386,10 +395,10 @@
 
         if(data.link){
             result.querySelector("[data-target-tpl='button-link']").href = data.link;
-            result.querySelector("[data-target-tpl='calendar-more-link']").href = data.link;
-            if (!hasAmelia) {
-                result.querySelector("[data-target-tpl='button-link-calendar']").href = data.link;
-            }
+            // result.querySelector("[data-target-tpl='calendar-more-link']").href = data.link;
+            // if (!hasAmelia) {
+            //     result.querySelector("[data-target-tpl='button-link-calendar']").href = data.link;
+            // }
         }
 
         if (hasAmelia) {
@@ -444,13 +453,9 @@
             }else{
                 if (!data.dates_disponibility_by_moment.includes(jour.toFormat("yyyy-MM-dd") + "-matin") || (today.hour >= 12 && today.day === jour.day)) {
                     tpl.querySelector(".available-morning").classList.add("disabled");
-                }else if(data.link){
-                    tpl.querySelector(".available-morning").href = data.link;
                 }
                 if (!data.dates_disponibility_by_moment.includes(jour.toFormat("yyyy-MM-dd") + "-apres-midi")) {
                     tpl.querySelector(".available-afternoon").classList.add("disabled");
-                }else if(data.link){
-                    tpl.querySelector(".available-afternoon").href = data.link;
                 }
             }
             dayList.appendChild(tpl);
@@ -461,18 +466,18 @@
 
 <script>
     // Type effect
-    const typeDeTherapeutes = <?php echo json_encode($vars['type_de_therapeute']); ?>;
+    const listWords = <?php echo json_encode($vars['listWords']); ?>;
     const target = document.querySelector("#coopleo-results #coopleo-type-effect");
     const typingDelay = 50;
     const erasingDelay = 25;
     const newTextDelay = 2000;
 
     let textArrayIndex = 0;
-    let charIndex = typeDeTherapeutes[0].length;
+    let charIndex = listWords[0].length;
 
     function type() {
-        if (charIndex < typeDeTherapeutes[textArrayIndex].length) {
-            target.textContent += typeDeTherapeutes[textArrayIndex].charAt(charIndex);
+        if (charIndex < listWords[textArrayIndex].length) {
+            target.textContent += listWords[textArrayIndex].charAt(charIndex);
             charIndex++;
             setTimeout(type, typingDelay);
         } else {
@@ -482,16 +487,16 @@
 
     function erase() {
         if (charIndex > 0) {
-            target.textContent = typeDeTherapeutes[textArrayIndex].substring(0, charIndex - 1);
+            target.textContent = listWords[textArrayIndex].substring(0, charIndex - 1);
             charIndex--;
             setTimeout(erase, erasingDelay);
         } else {
-            textArrayIndex = (textArrayIndex + 1) % typeDeTherapeutes.length;
+            textArrayIndex = (textArrayIndex + 1) % listWords.length;
             setTimeout(type, typingDelay);
         }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        if (typeDeTherapeutes.length) setTimeout(erase, newTextDelay);
+        if (listWords.length) setTimeout(erase, newTextDelay);
     });
 </script>
