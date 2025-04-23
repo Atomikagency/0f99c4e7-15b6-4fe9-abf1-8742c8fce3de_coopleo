@@ -87,6 +87,10 @@
                         </div>
                         <p data-target-tpl="langue"></p>
                     </div>
+                    <div class="result-card-therapist-detail result-card-therapist-free-rdv">
+                        <img src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/free-rdv-icon.png'; ?>" alt="">
+                        <p>1er RDV gratuit</p>
+                    </div>
                 </div>
                 <div class="result-card-therapist-rdv">
                    <div class="rdv-type-list">
@@ -261,10 +265,16 @@
     }
 
     nextPageButton.addEventListener("click", () => {
+        if (currentPage === totalPages) {
+            return;
+        }
         currentPage++;
         fetchResults();
     })
     prevPageButton.addEventListener("click", () => {
+        if (currentPage === 1) {
+            return;
+        }
         currentPage--;
         fetchResults();
     })
@@ -343,8 +353,10 @@
             replaceTplContent(main, "results-count", "0 résultat");
             return;
         }
-        
+
         totalPages = pagination.last_page;
+        currentPage = parseInt(pagination.current_page) || pagination.current_page;
+
         replaceTplContent(main, "page-number", `Page ${currentPage} sur ${pagination.last_page}`);
         let resultCountSentence = `${pagination.total} résultat${pagination.total > 1 ? "s" : ""}`;
 
@@ -391,6 +403,10 @@
             }
         }else{
             deleteTplElement(result, ".result-card-therapist-price");
+        }
+
+        if (!data.free_rdv) {
+            deleteTplElement(result, ".result-card-therapist-free-rdv")
         }
 
         if(data.link){

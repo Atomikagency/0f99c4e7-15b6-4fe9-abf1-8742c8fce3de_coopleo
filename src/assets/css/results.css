@@ -172,6 +172,22 @@
                                 color: #fff;
                             }
                         }
+
+                        &.result-card-therapist-free-rdv{
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 5px;
+                            background-color: #cde9f1;
+                            border-radius: 100vmax;
+                            padding: .5rem 1rem;
+                            align-self: flex-start;
+                            font-size: .875rem;
+
+                            & img {
+                                width: 18px;
+                                aspect-ratio: 1/1;
+                            }
+                        }
                     }
                 }
 
