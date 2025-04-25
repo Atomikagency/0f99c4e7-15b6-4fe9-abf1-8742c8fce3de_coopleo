@@ -9,12 +9,15 @@ function envoyer_mail_si_pas_amelia_employee($user_id) {
     $reset_key = get_password_reset_key($user);
     $user_login = $user->user_login;
     $site_url = site_url();
+
     $reset_url = $site_url . '/wp-login.php?action=rp&key=' . $reset_key . '&login=' . rawurlencode($user_login);
     $data = array(
         'user_id' => $user_id,
         'password_reset_url' => $reset_url
     );
-    $ch = curl_init($webhook_url.'?user_id='.$user_id.'&password_reset_url='.$reset_url);
+    $queryString = http_build_query($data);
+
+    $ch = curl_init($webhook_url.'?'.$queryString);
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
