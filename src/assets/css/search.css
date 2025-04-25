@@ -34,6 +34,9 @@
             gap: 0.75rem;
 
             & label {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
                 position: relative;
                 border: 1px solid var(--coopleo-secondary);
                 padding: 0.875rem 1.2rem;
@@ -44,7 +47,7 @@
                 &:has(input:checked) {
                     border-color: var(--coopleo-primary);
                     color: var(--coopleo-primary);
-                    background-color: var(--coopleo-primary-light);
+                    background-color: #f9e9ef;
                 }
 
                 & input {
@@ -55,6 +58,15 @@
                     inset: 0;
                 }
             }
+        }
+    }
+
+    & .svg-container {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        & img {
+            width: 20px;
         }
     }
 
@@ -188,10 +200,6 @@
             bottom: 0;
             left: 0;
             opacity: 0;
-
-            &:not(:checked) + div .coopleo-free-rdv-checkbox-icon svg {
-                display: none;
-            }
         }
 
         & .coopleo-free-rdv-checkbox-icon{
@@ -219,6 +227,12 @@
             & span:last-child {
                 font-size: .875rem;
             }
+        }
+    }
+
+    &:has(input[name="free-rdv"]:not(:checked)) .coopleo-free-rdv-checkbox {
+        & .coopleo-free-rdv-checkbox-icon svg {
+            display: none;
         }
     }
 
@@ -413,9 +427,16 @@
     & #coopleo-basic-filters-modal {
         display: block !important;
     }
+    #coopleo-search .coopleo-free-rdv-checkbox:not(:has(input)) {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 760px){
+    #coopleo-search .coopleo-free-rdv-checkbox:has(input){
+        display: none;
+    }
+
     #coopleo-search #advenced-filters-toggle{
         display: none;
     }
@@ -463,7 +484,7 @@
                 padding: 2rem;
                 display: flex;
                 flex-direction: column;
-                & .ci-label svg { display: none; }
+                & .ci-label img, & .ci-label svg { display: none; }
                 & .ci-label span { font-size: 1rem; font-weight: bold; }
 
                 & #coopleo-search-container, & #coopleo-address-container {
@@ -495,6 +516,10 @@
                             align-items: center;
                             border: 1px solid var(--coopleo-secondary);
                             border-radius: var(--coopleo-radius-sm);
+
+                            & img {
+                                width: 16px;
+                            }
                         }
                     }
                 }
