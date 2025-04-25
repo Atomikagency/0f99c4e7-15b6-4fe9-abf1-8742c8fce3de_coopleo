@@ -201,6 +201,8 @@
                         display: flex;
                         justify-content: flex-end;
                         gap: 0.5rem;
+
+                        & img { width: 30px; }
                     }
                     & .coopleo-button{
                         color: #fff;

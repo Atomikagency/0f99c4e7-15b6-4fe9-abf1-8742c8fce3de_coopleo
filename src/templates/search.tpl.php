@@ -43,23 +43,25 @@
                         <label>
                             <input type="checkbox" name="type_cabinet" value="cabinet" checked>
                             <span class="svg-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_634" data-name="Groupe 634" width="16.853" height="16.845" viewBox="0 0 16.853 16.845">
+                                <img src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/icone-en-cabinet.png'; ?>" alt="">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_634" data-name="Groupe 634" width="16.853" height="16.845" viewBox="0 0 16.853 16.845">
                                     <defs>
                                         <clipPath id="clip-path">
-                                        <rect id="Rectangle_968" data-name="Rectangle 968" width="16.853" height="16.845" transform="translate(0 0)" fill="#c92c61"/>
+                                        <rect id="Rectangle_968" data-name="Rectangle 968" width="10" height="10" transform="translate(0 0)" fill="#c92c61"/>
                                         </clipPath>
                                     </defs>
                                     <g id="Groupe_633" data-name="Groupe 633" transform="translate(0 0)" clip-path="url(#clip-path)">
                                         <path id="Tracé_295" data-name="Tracé 295" d="M15.32,9.043V11.49a5.364,5.364,0,0,1-10.728,0v-.833A5.364,5.364,0,0,1,0,5.355V.763A.757.757,0,0,1,.763,0H3.068A.757.757,0,0,1,3.83.763a.757.757,0,0,1-.763.762H1.543v3.83a3.83,3.83,0,0,0,7.66,0V1.525H7.678A.757.757,0,0,1,6.915.763.757.757,0,0,1,7.678,0H9.983a.765.765,0,0,1,.745.763V5.355a5.377,5.377,0,0,1-4.592,5.3v.833a3.83,3.83,0,1,0,7.66,0V9.043a2.294,2.294,0,1,1,2.926-1.4,2.33,2.33,0,0,1-1.4,1.4" transform="translate(0 0)" fill="#c92c61"/>
                                     </g>
-                                </svg>
+                                </svg> -->
                             </span>
                             <span>En cabinet</span>
                         </label>
                         <label>
                             <input type="checkbox" name="type_visio" value="visio">
                             <span class="svg-container">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_628" data-name="Groupe 628" width="16.779" height="16.777" viewBox="0 0 16.779 16.777">
+                                <img src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/icone-en-visio.png'; ?>" alt="">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_628" data-name="Groupe 628" width="16.779" height="16.777" viewBox="0 0 16.779 16.777">
                                     <defs>
                                         <clipPath id="clip-path">
                                         <rect id="Rectangle_963" data-name="Rectangle 963" width="16.779" height="16.777" transform="translate(0 0)" fill="#c92c61"/>
@@ -70,7 +72,7 @@
                                         <path id="Tracé_292" data-name="Tracé 292" d="M10.492,2.8a3.955,3.955,0,0,1,5.537,0,.839.839,0,0,0,1.174-1.2,5.638,5.638,0,0,0-7.886,0,.839.839,0,0,0,1.174,1.2Z" transform="translate(-6.969 0)" fill="#c92c61"/>
                                         <path id="Tracé_293" data-name="Tracé 293" d="M17.741,12.8a.839.839,0,1,0,1.117,1.252c.02-.018.04-.037.058-.057a1.076,1.076,0,0,1,1.51,0,.839.839,0,1,0,1.232-1.138c-.018-.02-.038-.039-.058-.057A2.76,2.76,0,0,0,17.741,12.8Z" transform="translate(-13.379 -9.203)" fill="#c92c61"/>
                                     </g>
-                                </svg>
+                                </svg> -->
                             </span>
                             <span>En visio</span>
                         </label>
@@ -123,7 +125,8 @@
                             <div id="coopleo-address-results"></div>
                         </label>
                         <button type="button" id="coopleo-localize-button-mobile" class="coopleo-button coopleo-button-secondary coopleo-button-icon" style="display: none;">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_487" data-name="Groupe 487" width="20" height="20" viewBox="0 0 20 20">
+                            <img width="16" height="16" src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/icone-localisation.png'; ?>" alt="">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_487" data-name="Groupe 487" width="20" height="20" viewBox="0 0 20 20">
                                 <defs>
                                     <clipPath id="clip-path">
                                     <rect id="Rectangle_790" data-name="Rectangle 790" width="20" height="20" fill="#c92c61"/>
@@ -133,12 +136,13 @@
                                     <path id="Tracé_258" data-name="Tracé 258" d="M138.839,136a2.839,2.839,0,1,0,2.839,2.839A2.843,2.843,0,0,0,138.839,136m0,4.056a1.217,1.217,0,1,1,1.217-1.217,1.218,1.218,0,0,1-1.217,1.217" transform="translate(-128.839 -128.839)" fill="#c92c61"/>
                                     <path id="Tracé_259" data-name="Tracé 259" d="M18.658,8.923h-1.67a7.311,7.311,0,0,0-6.442-6.442V.811a.811.811,0,0,0-1.622,0v1.67A7.311,7.311,0,0,0,2.482,8.923H.811a.811.811,0,0,0,0,1.622h1.67a7.311,7.311,0,0,0,6.442,6.442v1.67a.811.811,0,0,0,1.622,0v-1.67a7.311,7.311,0,0,0,6.442-6.442h1.67a.811.811,0,0,0,0-1.622m-8.923,6.49a5.679,5.679,0,1,1,5.679-5.679,5.685,5.685,0,0,1-5.679,5.679" transform="translate(0.265 0.265)" fill="#c92c61"/>
                                 </g>
-                            </svg>
+                            </svg> -->
                         </button>
                     </div>
                     <div class="coopleo-rdv-filters-buttons">
                         <button type="button" id="coopleo-localize-button" class="coopleo-button coopleo-button-secondary coopleo-button-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_487" data-name="Groupe 487" width="20" height="20" viewBox="0 0 20 20">
+                            <img width="20" height="20" src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/icone-localisation.png'; ?>" alt="">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_487" data-name="Groupe 487" width="20" height="20" viewBox="0 0 20 20">
                                 <defs>
                                     <clipPath id="clip-path">
                                     <rect id="Rectangle_790" data-name="Rectangle 790" width="20" height="20" fill="#c92c61"/>
@@ -148,13 +152,24 @@
                                     <path id="Tracé_258" data-name="Tracé 258" d="M138.839,136a2.839,2.839,0,1,0,2.839,2.839A2.843,2.843,0,0,0,138.839,136m0,4.056a1.217,1.217,0,1,1,1.217-1.217,1.218,1.218,0,0,1-1.217,1.217" transform="translate(-128.839 -128.839)" fill="#c92c61"/>
                                     <path id="Tracé_259" data-name="Tracé 259" d="M18.658,8.923h-1.67a7.311,7.311,0,0,0-6.442-6.442V.811a.811.811,0,0,0-1.622,0v1.67A7.311,7.311,0,0,0,2.482,8.923H.811a.811.811,0,0,0,0,1.622h1.67a7.311,7.311,0,0,0,6.442,6.442v1.67a.811.811,0,0,0,1.622,0v-1.67a7.311,7.311,0,0,0,6.442-6.442h1.67a.811.811,0,0,0,0-1.622m-8.923,6.49a5.679,5.679,0,1,1,5.679-5.679,5.685,5.685,0,0,1-5.679,5.679" transform="translate(0.265 0.265)" fill="#c92c61"/>
                                 </g>
-                            </svg>
+                            </svg> -->
                         </button>
                         <button class="coopleo-button coopleo-button-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                         </button>
                     </div>
                 </div>
+                <label for="free-rdv" class="coopleo-free-rdv-checkbox" style="margin-top: 1.25rem;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="coopleo-free-rdv-checkbox-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                        </span>
+                        <div class="coopleo-free-rdv-checkbox-label">
+                            <span>NEW ! 1er RDV gratuit</span>
+                            <span>10min en visio ou téléphone</span>
+                        </div>
+                    </div>
+                </label>
             </div>
             <div class="coopleo-basic-filters-modal-footer" style="display: none;">
                 <button class="coopleo-button">

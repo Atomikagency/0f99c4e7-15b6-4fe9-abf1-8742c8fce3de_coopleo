@@ -94,7 +94,9 @@
                 </div>
                 <div class="result-card-therapist-rdv">
                    <div class="rdv-type-list">
-                        <svg class="rdv-type-cabinet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+                        <img class="rdv-type-cabinet" src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/visio-en-cabinet-rond.png'; ?>" alt="">
+                        <img class="rdv-type-visio" src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/visio-en-visio-rond.png'; ?>" alt="">
+                        <!-- <svg class="rdv-type-cabinet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
                             <defs>
                                 <clipPath id="clip-path">
                                 <rect id="Rectangle_808" data-name="Rectangle 808" width="14.146" height="14.139" transform="translate(0 0)" fill="#c92c61"/>
@@ -131,10 +133,11 @@
                                 </g>
                                 </g>
                             </g>
-                        </svg>
+                        </svg> -->
                    </div>
                    <span class="coopleo-button" >
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_516" data-name="Groupe 516" width="15.158" height="15.982" viewBox="0 0 15.158 15.982">
+                        <img width="16" height="16" src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/calendrier.png'; ?>" alt="">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_516" data-name="Groupe 516" width="15.158" height="15.982" viewBox="0 0 15.158 15.982">
                             <defs>
                                 <clipPath id="clip-path">
                                 <rect id="Rectangle_817" data-name="Rectangle 817" width="15.158" height="15.982" fill="#fff"/>
@@ -152,7 +155,7 @@
                                 <path id="Tracé_276" data-name="Tracé 276" d="M24.464,152.365H11.249a.558.558,0,1,1,0-1.115H24.464a.558.558,0,1,1,0,1.115" transform="translate(-10.277 -145.98)" fill="#fff"/>
                                 <path id="Tracé_277" data-name="Tracé 277" d="M10.688,46.867H4.47C1.632,46.867,0,45.306,0,42.593V36.274C0,33.561,1.632,32,4.47,32h6.219c2.837,0,4.47,1.561,4.47,4.274v6.319c0,2.713-1.632,4.274-4.47,4.274M4.47,33.115c-2.223,0-3.3,1.033-3.3,3.159v6.319c0,2.126,1.081,3.159,3.3,3.159h6.219c2.223,0,3.3-1.033,3.3-3.159V36.274c0-2.126-1.08-3.159-3.3-3.159Z" transform="translate(0 -30.885)" fill="#fff"/>
                             </g>
-                        </svg>
+                        </svg> -->
                         <span data-target-tpl="button-label"></span>
                     </span>
                 </div>
