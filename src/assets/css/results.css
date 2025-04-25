@@ -18,6 +18,7 @@
         & h1 {
             font-size: 1.875rem;
             font-family: inherit;
+            min-height: 2.5em;
 
             & span.underline {
                 position: relative;
@@ -44,7 +45,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
-            margin-top: 1.25rem;
+            margin-top: .25rem;
 
             & label {
                 color: var(--coopleo-tertiary);
@@ -105,6 +106,7 @@
         grid-template-columns: 1fr 1fr;
         border-radius: var(--coopleo-radius);
         background-color: var(--coopleo-result-card-bg);
+        color: inherit;
 
         & .result-card-therapist {
             background-color: #fff;
@@ -168,6 +170,22 @@
                             & > svg {
                                 width: .75rem;
                                 color: #fff;
+                            }
+                        }
+
+                        &.result-card-therapist-free-rdv{
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 5px;
+                            background-color: #cde9f1;
+                            border-radius: 100vmax;
+                            padding: .5rem 1rem;
+                            align-self: flex-start;
+                            font-size: .875rem;
+
+                            & img {
+                                width: 18px;
+                                aspect-ratio: 1/1;
                             }
                         }
                     }
@@ -267,6 +285,7 @@
                 font-weight: bold;
                 text-decoration: underline;
                 text-underline-offset: .25rem;
+                color: var(--coopleo-primary);
             }
         }
     }

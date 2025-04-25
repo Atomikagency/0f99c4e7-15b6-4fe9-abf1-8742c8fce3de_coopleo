@@ -101,6 +101,19 @@
                 border: none;
                 background: none;
             }
+
+            & input[name="address"].error{
+                color: var(--coopleo-primary)
+            }
+
+            & input[name="address"] + small.coopleo-input-address-error {
+                position: absolute;
+                top: calc(100% + 2px);
+                left: 1rem;
+                font-size: .625rem;
+                line-height: 1em;
+                color: var(--coopleo-primary)
+            }
         }
 
         & .coopleo-rdv-filters-buttons {
@@ -164,6 +177,47 @@
                         background-color: var(--coopleo-primary-light);
                     }
                 }
+            }
+        }
+    }
+
+    & .coopleo-free-rdv-checkbox{
+        position: relative;
+        & input {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+
+            &:not(:checked) + div .coopleo-free-rdv-checkbox-icon svg {
+                display: none;
+            }
+        }
+
+        & .coopleo-free-rdv-checkbox-icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2.875rem;
+            aspect-ratio: 1 / 1;
+            border: 1px solid var(--coopleo-secondary);
+            border-radius: var(--coopleo-radius-sm);
+            background-color: #fff;
+            cursor: pointer;
+            & svg {
+                color: var(--coopleo-primary);
+            }
+        }
+
+        & .coopleo-free-rdv-checkbox-label{
+            display: flex;
+            flex-direction: column;
+
+            & span:first-child {
+                color: var(--coopleo-primary);
+            }
+            & span:last-child {
+                font-size: .875rem;
             }
         }
     }
