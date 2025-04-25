@@ -14,11 +14,12 @@ function envoyer_mail_si_pas_amelia_employee($user_id) {
         'user_id' => $user_id,
         'password_reset_url' => $reset_url
     );
-    $ch = curl_init($webhook_url);
+    $ch = curl_init($webhook_url.'?user_id='.$user_id.'&password_reset_url='.$reset_url);
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
