@@ -180,7 +180,7 @@
         </div>
     </div>
 
-    <?php if (!$vars['hasAdvancedFilters']) { ?>
+    <?php if ($vars['hasAdvancedFilters']) { ?>
         <div style="display:flex; align-items: center; gap: 2.5rem; margin-top: .625rem;">
             <button type="button" class="coopleo-button coopleo-button-secondary" id="advenced-filters-toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_563" data-name="Groupe 563" width="15.535" height="12.428" viewBox="0 0 15.535 12.428">
