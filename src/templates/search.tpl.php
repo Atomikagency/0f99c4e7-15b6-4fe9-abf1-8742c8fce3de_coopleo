@@ -180,7 +180,7 @@
         </div>
     </div>
 
-    <?php if ($vars['hasAdvancedFilters']) { ?>
+    <?php if (!$vars['hasAdvancedFilters']) { ?>
         <div style="display:flex; align-items: center; gap: 2.5rem; margin-top: .625rem;">
             <button type="button" class="coopleo-button coopleo-button-secondary" id="advenced-filters-toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_563" data-name="Groupe 563" width="15.535" height="12.428" viewBox="0 0 15.535 12.428">
@@ -208,6 +208,19 @@
                 </div>
             </label>
         </div>
+    <?php }else{ ?>
+        <label class="coopleo-free-rdv-checkbox" style="display: none;">
+            <input type="checkbox" name="free-rdv" id="free-rdv">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="coopleo-free-rdv-checkbox-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                </span>
+                <div class="coopleo-free-rdv-checkbox-label">
+                    <span>NEW ! 1er RDV gratuit</span>
+                    <span>10min en visio ou téléphone</span>
+                </div>
+            </div>
+        </label>
     <?php } ?>
 
     <div id="coopleo-advenced-filters-modal" style="display: none;">
@@ -308,6 +321,21 @@
     const resetFilters = document.getElementById('coopleo-reset-filters-button');
     const autocompleteData = <?php echo json_encode($vars["autocompleteData"], JSON_UNESCAPED_UNICODE); ?>;
     const iaSearchURL = "<?php echo COOPLEO_API_ENDPOINT_AI; ?>";
+
+    // Type checkbox behavior
+    const inputCabinet = document.querySelector('input[name="type_cabinet"]');
+    const inputVisio = document.querySelector('input[name="type_visio"]');
+
+    inputCabinet.addEventListener('change', () => {
+        if(inputCabinet.checked){
+            inputVisio.checked = false;
+        }
+    });
+    inputVisio.addEventListener('change', () => {
+        if(inputVisio.checked){
+            inputCabinet.checked = false;
+        }
+    });
 
     // Modal management
     const advencedFiltersModalBackdrop = document.getElementById('advenced-filters-modal-backdrop');
@@ -664,6 +692,7 @@
 
     function searchAutocomplete(search){
         const results = {};
+        const safeTrimDotsEnd = str => (str ?? '').replace(/\.+$/, '');
         Object.entries(autocompleteData).forEach(([key, values]) => {
             results[key] = filterAndSort(search, values);
         })
@@ -673,7 +702,7 @@
                 fetchAiAutocomplete(search).then(res => {
                     if (res && res.length) {
                         resetautocomplete();
-                        displaySearchAutocompleteResults("Problématiques", Array.isArray(res) ? res : [res]);
+                        displaySearchAutocompleteResults("Problématiques", Array.isArray(res) ? res.map(r => safeTrimDotsEnd(r)) : [safeTrimDotsEnd(res)]);
                     }
                 });
             }, 300);

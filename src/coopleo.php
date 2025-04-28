@@ -29,10 +29,10 @@ require_once COOPLEO_PLUGIN_DIR . 'update-checker.php';
 
 function ta_enqueue_styles()
 {
-    wp_enqueue_style('coopleo-search', COOPLEO_PLUGIN_URL . 'assets/css/search.css', [], '1.8.0');
-    wp_enqueue_style('coopleo-results', COOPLEO_PLUGIN_URL . 'assets/css/results.css', [], '1.8.0');
-    wp_enqueue_style('coopleo-dual-range', COOPLEO_PLUGIN_URL . 'assets/css/dual-range.css', [], '1.8.0');
-    wp_enqueue_script_module('coopleo-dual-range-input', COOPLEO_PLUGIN_URL . 'assets/js/dual-range-input.js', [], '1.8.0');
+    wp_enqueue_style('coopleo-search', COOPLEO_PLUGIN_URL . 'assets/css/search.css', [], '1.9.0');
+    wp_enqueue_style('coopleo-results', COOPLEO_PLUGIN_URL . 'assets/css/results.css', [], '1.9.0');
+    wp_enqueue_style('coopleo-dual-range', COOPLEO_PLUGIN_URL . 'assets/css/dual-range.css', [], '1.9.0');
+    wp_enqueue_script_module('coopleo-dual-range-input', COOPLEO_PLUGIN_URL . 'assets/js/dual-range-input.js', [], '1.9.0');
 }
 
 add_action('wp_enqueue_scripts', 'ta_enqueue_styles');
