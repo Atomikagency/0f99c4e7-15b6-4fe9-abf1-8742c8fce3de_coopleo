@@ -203,6 +203,47 @@
                         gap: 0.5rem;
 
                         & img { width: 30px; }
+
+                        & .rdv-type-cabinet, & .rdv-type-visio{
+                            position: relative;
+                            & .tooltip{
+                                display: none;
+                                position: absolute;
+                                bottom: 100%;
+                                left: 50%;
+                                width: max-content;
+                                font-size: .75rem;
+                                padding: .5rem;
+                                margin-bottom: 10px;
+                                border-radius: var(--coopleo-radius-sm);
+                                transform: translateX(-50%) scale(1);
+                                background-color: var(--coopleo-primary);
+                                color: #fff;
+                                opacity: 1;
+                                transition: all .2s ease-in-out;
+
+                                &::after{
+                                    content: '';
+                                    position: absolute;
+                                    top: 100%;
+                                    left: 50%;
+                                    transform: translate3d(-50%, -1px, 0);
+                                    border-left: 5px solid transparent;
+                                    border-right: 5px solid transparent;
+                                    border-top: 5px solid var(--coopleo-primary);
+                                }
+
+                                @starting-style {
+                                    opacity: 0;
+                                    margin-bottom: 5px;
+                                    transform: translateX(-50%) scale(.9);
+                                }
+                            }
+
+                            &:hover .tooltip{
+                                display: block;
+                            }
+                        }
                     }
                     & .coopleo-button{
                         color: #fff;

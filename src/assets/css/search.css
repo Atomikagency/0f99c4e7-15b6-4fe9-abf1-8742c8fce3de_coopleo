@@ -244,6 +244,20 @@
         gap: 0.6rem;
         border-radius: var(--coopleo-radius);
         padding: 0.875rem 1.06rem;
+        border: 1px solid var(--coopleo-primary);
+        transition: all .2s ease-in-out;
+        & svg {
+            transition: color .2s ease-in-out;
+        }
+
+        &:hover {
+            background-color: #fff !important;
+            color: var(--coopleo-primary) !important;
+            border: 1px solid var(--coopleo-secondary) !important;
+            & svg {
+                color: var(--coopleo-primary) !important;
+            }
+        }
 
         &.coopleo-button-secondary {
             background-color: #fff;

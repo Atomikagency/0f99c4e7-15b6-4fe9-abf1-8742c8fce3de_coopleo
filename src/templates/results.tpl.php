@@ -14,8 +14,8 @@
             <label>
                 <span>Tri par :</span>
                 <select name="sort_by" id="coopleo-sort-by">
-                    <option value="default" selected>Prochaine disponibilité</option>
-                    <option value="location" id="coopleo-sort-by-location">Localisation</option>
+                    <option value="default">Prochaine disponibilité</option>
+                    <option value="location" id="coopleo-sort-by-location" selected>Localisation</option>
                     <option value="price">Prix croissant</option>
                 </select>
                 <span class="svg-container">
@@ -94,8 +94,14 @@
                 </div>
                 <div class="result-card-therapist-rdv">
                    <div class="rdv-type-list">
-                        <img class="rdv-type-cabinet" src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/visio-en-cabinet-rond.png'; ?>" alt="">
-                        <img class="rdv-type-visio" src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/visio-en-visio-rond.png'; ?>" alt="">
+                        <div class="rdv-type-cabinet">
+                            <img src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/visio-en-cabinet-rond.png'; ?>" alt="">
+                            <p class="tooltip">En cabinet</p>
+                        </div>
+                        <div class="rdv-type-visio">
+                            <img src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/visio-en-visio-rond.png'; ?>" alt="">
+                            <p class="tooltip">En visio</p>
+                        </div>
                         <!-- <svg class="rdv-type-cabinet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
                             <defs>
                                 <clipPath id="clip-path">
@@ -224,7 +230,7 @@
     let perPage = <?php echo $vars["limit"]; ?>;
     let currentPage = 1;
     let totalPages = 1;
-    let orderBy = "default";
+    let orderBy = "location";
 
     window.addEventListener("DOMContentLoaded", () => {
         // wrap on condition if search params are present
@@ -251,8 +257,13 @@
                 const optionToSelect = sortBySelect.querySelector(`option[value="${urlParamsObj.sort_by}"]`)
                 if (optionToSelect) {
                     optionToSelect.selected = true;
+                    orderBy = urlParamsObj.sort_by;
+                }else{
+                    const type = urlParamsObj.type ?? "visio"
+                    const optionToSelect = sortBySelect.querySelector(`option[value="${type === "cabinet" ? "location" : "default"}"]`)
+                    optionToSelect.selected = true;
+                    orderBy = type === "cabinet" ? "location" : "default";
                 }
-                orderBy = urlParamsObj.sort_by;
             }
             if (urlParamsObj.currentPage) {
                 currentPage = urlParamsObj.currentPage;
@@ -301,6 +312,17 @@
             sortByLocationOption.style.display = "block";
         } else {
             sortByLocationOption.style.display = "none";
+        }
+        sortBySelect.querySelectorAll("option").forEach((option) => {
+            option.selected = false;
+        })
+        if (filters.type) {
+            const optionToSelect = sortBySelect.querySelector(`option[value="${filters.type === "cabinet" ? "location" : "default"}"]`)
+            optionToSelect.selected = true;
+            orderBy = filters.type === "cabinet" ? "location" : "default";
+        }else{
+            sortBySelect.querySelector("option[value='default']").selected = true;
+            orderBy = "default";
         }
         fetchResults();
     })

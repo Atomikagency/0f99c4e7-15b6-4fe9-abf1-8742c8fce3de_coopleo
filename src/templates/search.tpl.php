@@ -41,7 +41,7 @@
                     </p>
                     <div class="coopleo-rdv-type-choices">
                         <label>
-                            <input type="checkbox" name="type_cabinet" value="cabinet" checked>
+                            <input type="checkbox" name="type_cabinet" value="cabinet">
                             <span class="svg-container">
                                 <img src="<?php echo COOPLEO_PLUGIN_URL . 'assets/icons/icone-en-cabinet.png'; ?>" alt="">
                                 <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Groupe_634" data-name="Groupe 634" width="16.853" height="16.845" viewBox="0 0 16.853 16.845">
@@ -322,21 +322,6 @@
     const autocompleteData = <?php echo json_encode($vars["autocompleteData"], JSON_UNESCAPED_UNICODE); ?>;
     const iaSearchURL = "<?php echo COOPLEO_API_ENDPOINT_AI; ?>";
 
-    // Type checkbox behavior
-    const inputCabinet = document.querySelector('input[name="type_cabinet"]');
-    const inputVisio = document.querySelector('input[name="type_visio"]');
-
-    inputCabinet.addEventListener('change', () => {
-        if(inputCabinet.checked){
-            inputVisio.checked = false;
-        }
-    });
-    inputVisio.addEventListener('change', () => {
-        if(inputVisio.checked){
-            inputCabinet.checked = false;
-        }
-    });
-
     // Modal management
     const advencedFiltersModalBackdrop = document.getElementById('advenced-filters-modal-backdrop');
     const advencedFiltersToggle = document.getElementById('advenced-filters-toggle');
@@ -541,6 +526,10 @@
 
     addressInput.addEventListener('blur', () => {
         setTimeout(() => {
+            if (document.querySelector('input[name="type_visio"]').checked) {
+                return
+            }
+            console.log("timeout");
             if(addressInput.value && (!latInput.value || !lngInput.value)){
                 showError();
             }else{
@@ -620,6 +609,33 @@
         adressResults.appendChild(groupResults);
         updateAddressCompletionFocus();
     }
+
+    // Type checkbox behavior
+    const inputCabinet = document.querySelector('input[name="type_cabinet"]');
+    const inputVisio = document.querySelector('input[name="type_visio"]');
+
+    inputCabinet.addEventListener('change', () => {
+        if(inputCabinet.checked){
+            inputVisio.checked = false;
+            addressInput.disabled = false;
+            addressInput.value = '';
+            resetAddressAutocomplete();
+            hideError();
+        }
+    });
+    inputVisio.addEventListener('change', () => {
+        if(inputVisio.checked){
+            inputCabinet.checked = false;
+            addressInput.disabled = true;
+            addressInput.value = "À distance";
+            latInput.value = '';
+            lngInput.value = '';
+            cityInput.value = '';
+            cpInput.value = '';
+            resetAddressAutocomplete();
+            hideError();
+        }
+    });
 
     // Search autocomplete
     const searchInput = document.getElementById('coopleo-search-input');
@@ -882,6 +898,18 @@
                 if (toCheck) {
                     toCheck.checked = true;
                 }
+                if (urlParamsObj.type === "visio") {
+                    addressInput.disabled = true;
+                    addressInput.value = "À distance";
+                    latInput.value = '';
+                    lngInput.value = '';
+                    cityInput.value = '';
+                    cpInput.value = '';
+                    resetAddressAutocomplete();
+                    hideError();
+                }
+            }else{
+                document.querySelector(".coopleo-rdv-type-container input[value='cabinet']").checked = true;
             }
             if (urlParamsObj.first_available) {
                 const toCheck = document.querySelector("#coopleo-search input[name='first_available'][value='" + urlParamsObj.first_available + "']");
@@ -894,6 +922,8 @@
             }else{
                 document.querySelector("#coopleo-search select[name='langue']").value = "all";
             }
+        }else{
+            document.querySelector(".coopleo-rdv-type-container input[value='cabinet']").checked = true;
         }
     })
 
