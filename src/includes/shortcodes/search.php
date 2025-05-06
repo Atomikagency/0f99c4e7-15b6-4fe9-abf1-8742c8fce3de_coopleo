@@ -13,7 +13,13 @@ function coopleo_search_shortcode($atts)
     $hasAdvancedFilters = filter_var($atts['hasadvancedfilters'], FILTER_VALIDATE_BOOLEAN);
     $whiteLabelColor = filter_var($atts['whitelabelcolor'], FILTER_VALIDATE_BOOLEAN);
     ob_start();
+    $settings = get_option('coopleo_search_engine_options');
+
     $searchPageResultUrl = get_permalink(COOPLEO_SEARCH_PAGE_RESULT);
+
+    if (!empty($settings['search_page_result_id'])) {
+        $searchPageResultUrl = get_permalink($settings['search_page_result_id']);
+    }
 
     $autocompleteSearch = [];
 
@@ -43,11 +49,10 @@ function coopleo_search_shortcode($atts)
             return $term->name;
         }, $type_de_metiers);
 
-        $problematique_terms = get_terms([
-            'taxonomy' => 'cat_problematique',
-            'hide_empty' => false,
-        ]);
-
+//        $problematique_terms = get_terms([
+//            'taxonomy' => 'cat_problematique',
+//            'hide_empty' => false,
+//        ]);
 
         $curl = curl_init();
 
@@ -68,7 +73,7 @@ function coopleo_search_shortcode($atts)
         $response = curl_exec($curl);
 
         curl_close($curl);
-        $data =  json_decode($response,true);
+        $data = json_decode($response, true);
 
         $autocompleteSearch['cat_problematique'] = $data['problems'] ?? [];
 

@@ -8,7 +8,7 @@
 ?>
 <div id="coopleo-results">
     <div class="header">
-        <h1><span class="underline">Prendre rendez-vous</span> avec <span id="coopleo-type-effect"><?php echo $vars['listWords'][0]; ?></span></h1>
+        <h1><span class="underline"><?php  echo $vars['labelListeMetier'] ?></span> <span id="coopleo-type-effect"><?php echo $vars['listWords'][0]; ?></span></h1>
        <div id="coopleo-results-count-container">
             <p data-target-tpl="results-count"></p>
             <label>
@@ -58,7 +58,7 @@
 </div>
 
 <template id="coopleo-result-tpl">
-    <a href="#" class="result-card" data-target-tpl="button-link">
+    <a href="#" class="result-card" <?php echo ($vars['openNewTab'] ? 'target="_blank"': '') ?> data-target-tpl="button-link">
         <div class="result-card-therapist">
             <div class="result-card-therapist-infos">
                 <img src="" alt="Photo de profil">
@@ -421,7 +421,7 @@
         }
 
         if (hasAmelia) {
-            replaceTplContent(result, "button-label", "Prendre rendez-vous");
+            replaceTplContent(result, "button-label", "<?php echo $vars['labelBtn'] ?>");
             deleteTplElement(result, ".result-card-calendar-no-amelia");
         }else{
             replaceTplContent(result, "button-label", "Contacter");
