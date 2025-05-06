@@ -31,7 +31,7 @@ function coopleo_search_shortcode($atts)
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => COOPLEO_API_ENDPOINT_BASE.'/api/problematiques',
+            CURLOPT_URL => COOPLEO_API_ENDPOINT_BASE.'/api/therapeute',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
