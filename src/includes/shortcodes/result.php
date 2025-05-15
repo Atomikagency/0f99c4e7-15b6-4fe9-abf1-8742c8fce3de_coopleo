@@ -56,8 +56,21 @@ function coopleo_search_result_shortcode($atts)
         'labelListeMetier' => $settings['label_liste_metier'] ?? 'Prendre rendez-vous avec',
         'labelBtn' => $settings['label_btn'] ?? 'Prendre rendez-vous',
         'openNewTab' => !empty($settings['ouvrir_profil_nouvel_onglet']) ?? false,
-        'fsf_only' => false
+        'fsf_only' => !empty($settings['display_only_fsf']) ?? false,
+        'cta_1' => [
+            'active' => !empty($settings['cta1_active']) ?? false,
+            'label' => !empty($settings['cta1_label']) ? $settings['cta1_label'] :'',
+            'image' => !empty($settings['cta1_image']) ? $settings['cta1_image'] :'',
+            'link' => !empty($settings['cta1_link']) ? $settings['cta1_link'] :'',
+        ],
+        'cta_2' => [
+            'active' => !empty($settings['cta2_active']) ?? false,
+            'label' => !empty($settings['cta2_label']) ? $settings['cta2_label'] : '',
+            'image' => !empty($settings['cta2_image']) ? $settings['cta2_image'] : '',
+            'link' => !empty($settings['cta2_link']) ? $settings['cta2_link'] : '',
+        ]
     ]);
+
     include COOPLEO_PLUGIN_DIR . 'templates/results.tpl.php';
 
     return ob_get_clean();
