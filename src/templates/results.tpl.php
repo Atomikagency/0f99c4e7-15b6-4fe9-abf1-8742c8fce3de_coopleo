@@ -217,6 +217,7 @@
 
     const main = document.querySelector("#coopleo-results");
     const searchURL = "<?php echo COOPLEO_API_ENDPOINT; ?>";
+    const only_fsf = !!("<?php echo $vars['fsf_only'] ?>" === "1");
     const resultTpl = document.querySelector("#coopleo-result-tpl");
     const resultDayTpl = document.querySelector("#coopleo-result-day-tpl");
     const resultsContainer = document.querySelector("#coopleo-results-container");
@@ -334,6 +335,7 @@
         if (filters.langue === "all") {
             delete filters.langue
         }
+        filters.only_fsf = only_fsf;
 
         if (filters.address && (!filters.lat || !filters.lng)) {
             filters.address = "";
