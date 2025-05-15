@@ -101,6 +101,130 @@
         }
     }
 
+    & .result-card-simplified {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        border-radius: var(--coopleo-radius);
+        background-color: #fff;
+        color: inherit;
+        padding: 1.25rem;
+
+        & .result-card-therapist-infos{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            & img {
+                flex-shrink: 0;
+                width: 3.93rem;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            & .result-card-therapist-name{
+                font-size: 1.125rem;
+                font-weight: bold;
+                font-family: inherit;
+                margin-bottom: 0.5rem;
+            }
+
+            & .result-card-therapist-type{
+                font-size: 1.125rem;
+                font-family: inherit;
+                color: var(--coopleo-primary);
+            }
+
+            & .result-card-therapist-detail {
+                display: flex;
+                align-items: center;
+                margin-top: 0.5rem;
+                gap: 0.5rem;
+
+                & .svg-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-shrink: 0;
+                    width: 1rem;
+                    height: 100%;
+                    aspect-ratio: 1/1;
+                    background-color: var(--coopleo-backdrop);
+                    border-radius: 50%;
+
+                    & > svg {
+                        width: .75rem;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        & .result-card-therapist-rdv{
+            margin-left: auto;
+            display: flex;
+            flex-shrink: 0;
+            gap: 0.5rem;
+            align-items: center;
+            & .rdv-type-list{
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.5rem;
+
+                & img { width: 30px; }
+
+                & .rdv-type-cabinet, & .rdv-type-visio{
+                    position: relative;
+                    & .tooltip{
+                        display: none;
+                        position: absolute;
+                        bottom: 100%;
+                        left: 50%;
+                        width: max-content;
+                        font-size: .75rem;
+                        padding: .5rem;
+                        margin-bottom: 10px;
+                        border-radius: var(--coopleo-radius-sm);
+                        transform: translateX(-50%) scale(1);
+                        background-color: var(--coopleo-primary);
+                        color: #fff;
+                        opacity: 1;
+                        transition: all .2s ease-in-out;
+
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            top: 100%;
+                            left: 50%;
+                            transform: translate3d(-50%, -1px, 0);
+                            border-left: 5px solid transparent;
+                            border-right: 5px solid transparent;
+                            border-top: 5px solid var(--coopleo-primary);
+                        }
+
+                        @starting-style {
+                            opacity: 0;
+                            margin-bottom: 5px;
+                            transform: translateX(-50%) scale(.9);
+                        }
+                    }
+
+                    &:hover .tooltip{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        & .coopleo-button {
+            color: var(--coopleo-primary);
+            background-color: #fff;
+            border: 1px solid var(--coopleo-primary);
+        }
+    }
+
     & .result-card {
         display: grid;
         grid-template-columns: 1fr 1fr;
