@@ -80,6 +80,79 @@ function coopleo_search_engine_register_settings() {
         'coopleo_main_section',
         ['id' => 'display_only_fsf']
     );
+
+    add_settings_field(
+        'cta1_active',
+        'Activer le 1er CTA',
+        'coopleo_checkbox_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta1_active']
+    );
+
+    add_settings_field(
+        'cta1_label',
+        'Label 1er CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta1_label', 'default' => '']
+    );
+
+    add_settings_field(
+        'cta1_image',
+        'Image 1er CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta1_image']
+    );
+
+    add_settings_field(
+        'cta1_link',
+        'Lien 1er CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta1_link', 'default' => '']
+    );
+
+    add_settings_field(
+        'cta2_active',
+        'Activer le 2ème CTA',
+        'coopleo_checkbox_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta2_active']
+    );
+
+    add_settings_field(
+        'cta2_label',
+        'Label 2ème CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta2_label', 'default' => '']
+    );
+
+    add_settings_field(
+        'cta2_image',
+        'Image 2ème CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta2_image']
+    );
+
+    add_settings_field(
+        'cta2_link',
+        'Lien 2ème CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta2_link', 'default' => '']
+    );
+
 }
 add_action('admin_init', 'coopleo_search_engine_register_settings');
 
@@ -137,4 +210,3 @@ function coopleo_number_callback($args) {
     $value = $options[$args['id']] ?? '';
     echo "<input type='number' name='coopleo_search_engine_options[{$args['id']}]' value='" . esc_attr($value) . "' />";
 }
-
