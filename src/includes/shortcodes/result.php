@@ -55,7 +55,8 @@ function coopleo_search_result_shortcode($atts)
         'listWords' => $listWords,
         'labelListeMetier' => $settings['label_liste_metier'] ?? 'Prendre rendez-vous avec',
         'labelBtn' => $settings['label_btn'] ?? 'Prendre rendez-vous',
-        'openNewTab' => !empty($settings['ouvrir_profil_nouvel_onglet']) ?? false
+        'openNewTab' => !empty($settings['ouvrir_profil_nouvel_onglet']) ?? false,
+        'fsf_only' => false
     ]);
     include COOPLEO_PLUGIN_DIR . 'templates/results.tpl.php';
 
