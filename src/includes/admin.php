@@ -153,6 +153,16 @@ function coopleo_search_engine_register_settings() {
         ['id' => 'cta2_link', 'default' => '']
     );
 
+
+    add_settings_field(
+        'active_webhook_new_account',
+        'Ping webhook quand un compte est crée',
+        'coopleo_checkbox_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'active_webhook_new_account', 'default' => '']
+    );
+
 }
 add_action('admin_init', 'coopleo_search_engine_register_settings');
 
