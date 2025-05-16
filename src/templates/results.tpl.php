@@ -57,6 +57,33 @@
     <?php } ?>
 </div>
 
+<?php if ($vars['cta_1']['active']) { ?>
+    <template id="coopleo-cta-1-tpl">
+        <div class="coopleo-cta">
+            <div class="image-container">
+                <img src="<?php echo $vars['cta_1']['image'] ?>" alt="">
+            </div>
+            <div class="coopleo-cta-content">
+                <p><?php echo $vars['cta_1']['label'] ?></p>
+                <a href="<?php echo $vars['cta_1']['link'] ?>" class="button-link">Contacter Coopleo</a>
+            </div>
+        </div>
+    </template>
+<?php } ?>
+<?php if ($vars['cta_2']['active']) { ?>
+    <template id="coopleo-cta-2-tpl">
+        <div class="coopleo-cta">
+            <div class="image-container">
+                <img src="<?php echo $vars['cta_2']['image'] ?>" alt="">
+            </div>
+            <div class="coopleo-cta-content">
+                <p><?php echo $vars['cta_2']['label'] ?></p>
+                <a href="<?php echo $vars['cta_2']['link'] ?>" class="button-link">Contacter Coopleo</a>
+            </div>
+        </div>
+    </template>
+<?php } ?>
+
 <template id="coopleo-result-tpl">
     <a href="#" class="result-card" <?php echo ($vars['openNewTab'] ? 'target="_blank"': '') ?> data-target-tpl="button-link">
         <div class="result-card-therapist">
@@ -338,7 +365,12 @@
         const results = await response.json();
         resultsContainer.innerHTML = "";
         if (results.status === "success" && results.data.length) {
-            results.data.forEach(result => {
+            results.data.forEach((result, index) => {
+                if (parseInt(currentPage) === 1 && index === 1) {
+                    displayCTA("coopleo-cta-1-tpl")
+                } else if (parseInt(currentPage) === 1 && index === 3) {
+                    displayCTA("coopleo-cta-2-tpl")
+                }
                 if (result.document.no_adhesion) {
                     generateSimplifiedResult(result.document);
                 }else{
@@ -350,6 +382,15 @@
         }
 
         generatePagination(results.pagination);
+    }
+
+    function displayCTA(cta){
+        const tpl = document.getElementById(cta);
+        if (!tpl) {
+           return;
+        }
+        const ctaElement = tpl.content.cloneNode(true);
+        resultsContainer.appendChild(ctaElement);
     }
 
     function generatePagination(pagination){

@@ -136,6 +136,11 @@
 
             & button {
                 width: 53px;
+                cursor: pointer;
+                
+                &:last-child {
+                    color: #fff;
+                }
             }
         }
 
