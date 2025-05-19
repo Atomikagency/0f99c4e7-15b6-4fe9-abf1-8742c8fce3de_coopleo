@@ -863,6 +863,9 @@
             if(urlParamsObj.address){
                 addressInput.value = urlParamsObj.address;
             }
+            if(urlParamsObj["free-rdv"]){
+                document.querySelector("#coopleo-search input[name='free-rdv']").checked = true;
+            }
             if(urlParamsObj.lat){
                 latInput.value = urlParamsObj.lat;
             }
