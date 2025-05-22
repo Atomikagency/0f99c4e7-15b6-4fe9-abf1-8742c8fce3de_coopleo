@@ -62,12 +62,14 @@ function coopleo_search_result_shortcode($atts)
             'label' => !empty($settings['cta1_label']) ? $settings['cta1_label'] :'',
             'image' => !empty($settings['cta1_image']) ? $settings['cta1_image'] :'',
             'link' => !empty($settings['cta1_link']) ? $settings['cta1_link'] :'',
+            'btn' => !empty($settings['cta1_btn_label']) ? $settings['cta1_btn_label'] : 'Contacter coopleo',
         ],
         'cta_2' => [
             'active' => !empty($settings['cta2_active']) ?? false,
             'label' => !empty($settings['cta2_label']) ? $settings['cta2_label'] : '',
             'image' => !empty($settings['cta2_image']) ? $settings['cta2_image'] : '',
             'link' => !empty($settings['cta2_link']) ? $settings['cta2_link'] : '',
+            'btn' => !empty($settings['cta2_btn_label']) ? $settings['cta2_btn_label'] : 'Contacter coopleo',
         ]
     ]);
 

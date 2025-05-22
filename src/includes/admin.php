@@ -118,6 +118,15 @@ function coopleo_search_engine_register_settings() {
     );
 
     add_settings_field(
+        'cta1_btn_label',
+        'Label 1er CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta1_btn_label', 'default' => '']
+    );
+
+    add_settings_field(
         'cta2_active',
         'Activer le 2ème CTA',
         'coopleo_checkbox_callback',
@@ -151,6 +160,15 @@ function coopleo_search_engine_register_settings() {
         'coopleo-search-engine',
         'coopleo_main_section',
         ['id' => 'cta2_link', 'default' => '']
+    );
+
+    add_settings_field(
+        'cta2_btn_label',
+        'Label 2ème CTA',
+        'coopleo_text_callback',
+        'coopleo-search-engine',
+        'coopleo_main_section',
+        ['id' => 'cta2_btn_label', 'default' => '']
     );
 
 
