@@ -65,7 +65,7 @@
             </div>
             <div class="coopleo-cta-content">
                 <p><?php echo $vars['cta_1']['label'] ?></p>
-                <a href="<?php echo $vars['cta_1']['link'] ?>" class="button-link">Contacter Coopleo</a>
+                <a href="<?php echo $vars['cta_1']['link'] ?>" class="button-link"><?php echo $vars['cta_1']['btn'] ?></a>
             </div>
         </div>
     </template>
@@ -78,7 +78,7 @@
             </div>
             <div class="coopleo-cta-content">
                 <p><?php echo $vars['cta_2']['label'] ?></p>
-                <a href="<?php echo $vars['cta_2']['link'] ?>" class="button-link">Contacter Coopleo</a>
+                <a href="<?php echo $vars['cta_2']['link'] ?>" class="button-link"><?php echo $vars['cta_2']['btn'] ?></a>
             </div>
         </div>
     </template>
