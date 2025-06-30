@@ -8,7 +8,7 @@
 ?>
 <div id="coopleo-results">
     <div class="header">
-        <h1><span class="underline"><?php  echo $vars['labelListeMetier'] ?></span> <span id="coopleo-type-effect"><?php echo $vars['listWords'][0]; ?></span></h1>
+        <h2><span class="underline"><?php  echo $vars['labelListeMetier'] ?></span> <span id="coopleo-type-effect"><?php echo $vars['listWords'][0]; ?></span></h2>
        <div id="coopleo-results-count-container">
             <p data-target-tpl="results-count"></p>
             <label>
