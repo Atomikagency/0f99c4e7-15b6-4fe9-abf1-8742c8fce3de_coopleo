@@ -1,0 +1,243 @@
+/**
+ * Coopleo Menu Styles
+ */
+
+/* Menu Wrapper */
+.coopleo-menu-wrapper {
+    position: relative;
+}
+
+/* Menu Container */
+.coopleo-menu-container {
+    width: 100%;
+}
+
+/* Menu principale */
+.coopleo-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.coopleo-menu li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.coopleo-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.coopleo-menu a:hover,
+.coopleo-menu a:focus {
+    color: #0073aa;
+    background-color: rgba(0, 115, 170, 0.05);
+}
+
+/* Sous-menus */
+.coopleo-menu .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.coopleo-menu .sub-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.coopleo-menu .sub-menu li {
+    margin: 0;
+}
+
+.coopleo-menu .sub-menu a {
+    padding: 0.5rem 1rem;
+    font-size: 0.9em;
+    border-bottom: 1px solid #eee;
+}
+
+.coopleo-menu .sub-menu a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Toggle pour sous-menus */
+.coopleo-submenu-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.coopleo-submenu-icon {
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+    transition: transform 0.3s ease;
+}
+
+.coopleo-submenu-toggle.is-active .coopleo-submenu-icon {
+    transform: rotate(180deg);
+}
+
+/* Mobile Toggle Button */
+.coopleo-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.coopleo-menu-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 0;
+}
+
+.coopleo-menu-toggle-bar:nth-child(1) {
+    top: 5px;
+}
+
+.coopleo-menu-toggle-bar:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.coopleo-menu-toggle-bar:nth-child(3) {
+    bottom: 5px;
+}
+
+.coopleo-menu-toggle.is-active .coopleo-menu-toggle-bar:nth-child(1) {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -1.5px;
+}
+
+.coopleo-menu-toggle.is-active .coopleo-menu-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.coopleo-menu-toggle.is-active .coopleo-menu-toggle-bar:nth-child(3) {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -1.5px;
+}
+
+/* Message d'erreur */
+.coopleo-menu-error {
+    padding: 1rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .coopleo-menu-toggle {
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .coopleo-menu-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        z-index: 1000;
+    }
+
+    .coopleo-menu-container.is-active {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .coopleo-menu {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .coopleo-menu li {
+        border-bottom: 1px solid #eee;
+    }
+
+    .coopleo-menu a {
+        padding: 1rem;
+    }
+
+    /* Sous-menus mobile */
+    .coopleo-menu .sub-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        background: #f5f5f5;
+        transform: none;
+        display: none;
+    }
+
+    .coopleo-menu .sub-menu.is-open {
+        display: block;
+    }
+
+    .coopleo-menu .sub-menu a {
+        padding-left: 2rem;
+    }
+
+    .coopleo-submenu-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .menu-item-has-children {
+        position: relative;
+    }
+
+    .menu-item-has-children > a {
+        padding-right: 3rem;
+    }
+}
