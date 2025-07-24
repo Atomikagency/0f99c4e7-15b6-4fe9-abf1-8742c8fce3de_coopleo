@@ -9,100 +9,96 @@ class CoopleoMenu {
     }
 
     init() {
-        this.setupMobileToggle();
-        this.setupSubMenus();
-        this.setupAccessibility();
+        this.initProblematicSubmenuHover();
+        this.toggleMobileMenu();
+        this.openLoginModal();
     }
 
-    setupMobileToggle() {
-        const toggleButton = document.querySelector('.coopleo-menu-toggle');
-        const menuContainer = document.querySelector('.coopleo-menu-container');
+    initProblematicSubmenuHover() {
+        const target = document.querySelector(".coopleo-menu-wrapper .sub-problematique-target");
+        const submenuItem = document.querySelectorAll(".coopleo-menu-wrapper .problematique-menu-item");
 
-        if (!toggleButton || !menuContainer) return;
-
-        toggleButton.addEventListener('click', () => {
-            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
-            toggleButton.setAttribute('aria-expanded', !isExpanded);
-            menuContainer.classList.toggle('is-active');
-            toggleButton.classList.toggle('is-active');
+        submenuItem.forEach((item) => {
+            item.addEventListener("mouseover", () => {
+                const content = item.querySelector(".sub-menu").innerHTML;
+                target.innerHTML = content;
+            });
         });
+        const defaultContent = submenuItem[0].querySelector(".sub-menu").innerHTML;
+        target.innerHTML = defaultContent;
+    }
 
-        // Fermer le menu en cliquant en dehors
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.coopleo-menu-wrapper')) {
-                menuContainer.classList.remove('is-active');
-                toggleButton.classList.remove('is-active');
-                toggleButton.setAttribute('aria-expanded', 'false');
+    toggleMobileMenu() {
+        const toggleButton = document.querySelector(".coopleo-menu-toggle");
+        const menu = document.querySelector(".coopleo-menu-container");
+        const menuDropdown = document.querySelectorAll(".coopleo-menu-container .coopleo-menu li>a");
+
+        toggleButton.addEventListener("click", () => {
+            if (menu.classList.contains("active")) {
+                this.closeAllChildren(menu);
             }
+            menu.classList.toggle("active");
         });
-    }
 
-    setupSubMenus() {
-        const menuItems = document.querySelectorAll('.coopleo-menu .menu-item-has-children > a');
+        menuDropdown.forEach((item) => {
+            item.addEventListener("click", () => {
+                // Fermer tous les dropdowns frères (même niveau) qui ne sont pas des parents de l'élément cliqué
+                const currentParent = item.closest("li");
+                const siblings = Array.from(currentParent.parentElement.children);
 
-        menuItems.forEach(item => {
-            // Ajouter un bouton toggle pour les sous-menus
-            const toggleBtn = document.createElement('button');
-            toggleBtn.className = 'coopleo-submenu-toggle';
-            toggleBtn.setAttribute('aria-label', 'Toggle submenu');
-            toggleBtn.innerHTML = '<span class="coopleo-submenu-icon"></span>';
-            
-            item.parentNode.insertBefore(toggleBtn, item.nextSibling);
-
-            toggleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const submenu = item.nextElementSibling.nextElementSibling;
-                const isOpen = submenu.classList.contains('is-open');
-                
-                // Fermer tous les autres sous-menus
-                document.querySelectorAll('.coopleo-menu .sub-menu.is-open').forEach(openSubmenu => {
-                    if (openSubmenu !== submenu) {
-                        openSubmenu.classList.remove('is-open');
-                        openSubmenu.previousElementSibling.classList.remove('is-active');
+                siblings.forEach((sibling) => {
+                    if (sibling !== currentParent) {
+                        const siblingLink = sibling.querySelector(":scope > a");
+                        if (siblingLink) {
+                            siblingLink.classList.remove("active");
+                            // Fermer récursivement tous les enfants du frère
+                            this.closeAllChildren(sibling);
+                        }
                     }
                 });
 
-                submenu.classList.toggle('is-open');
-                toggleBtn.classList.toggle('is-active');
+                // Toggle l'état de l'élément cliqué
+                item.classList.toggle("active");
             });
         });
     }
 
-    setupAccessibility() {
-        const menuLinks = document.querySelectorAll('.coopleo-menu a');
+    closeAllChildren(element) {
+        const childLinks = element.querySelectorAll("a");
+        childLinks.forEach((link) => {
+            link.classList.remove("active");
+        });
+    }
 
-        // Navigation au clavier
-        menuLinks.forEach(link => {
-            link.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    const submenuToggle = link.nextElementSibling;
-                    if (submenuToggle && submenuToggle.classList.contains('coopleo-submenu-toggle')) {
-                        e.preventDefault();
-                        submenuToggle.click();
-                    }
-                }
-            });
+    openLoginModal() {
+        const trigger = document.querySelector(".coopleo-menu-wrapper .connection");
+        const loginModal = document.querySelector(".coopleo-login-modal");
+        const closeIcon = document.querySelector(".coopleo-login-modal .close-modal");
+
+        trigger.addEventListener("click", () => {
+            loginModal.showModal();
+        });
+        closeIcon.addEventListener("click", () => {
+            loginModal.close();
         });
 
-        // Escape pour fermer le menu mobile
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const menuContainer = document.querySelector('.coopleo-menu-container.is-active');
-                const toggleButton = document.querySelector('.coopleo-menu-toggle.is-active');
-                
-                if (menuContainer && toggleButton) {
-                    menuContainer.classList.remove('is-active');
-                    toggleButton.classList.remove('is-active');
-                    toggleButton.setAttribute('aria-expanded', 'false');
-                }
+        loginModal.addEventListener("click", (e) => {
+            const dialogDimensions = loginModal.getBoundingClientRect();
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+            ) {
+                loginModal.close();
             }
         });
     }
 }
 
 // Initialiser le menu quand le DOM est prêt
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
         new CoopleoMenu();
     });
 } else {
