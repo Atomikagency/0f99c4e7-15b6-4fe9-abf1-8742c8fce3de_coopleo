@@ -126,6 +126,7 @@
 
                     & > .problematique-dropdown-wrapper {
                         padding-block: 20px;
+                        padding-left: 15px;
                         display: grid;
                         grid-template-columns: 1fr 1fr;
 
@@ -339,8 +340,17 @@
                     background-color: #ebf8fa;
                 }
 
-                & > li > ul svg:not(.problematic-chevron-right) {
-                    display: none;
+               & li.problematique-menu-item > a {
+                    display: flex;
+                    /* justify-content: space-between; */
+                    align-items: center;
+                    position: relative;
+
+                    & span {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        gap: 10px;
+                    }
                 }
 
                 & li > a {
