@@ -126,6 +126,7 @@
 
                     & > .problematique-dropdown-wrapper {
                         padding-block: 20px;
+                        padding-left: 15px;
                         display: grid;
                         grid-template-columns: 1fr 1fr;
 
@@ -331,16 +332,26 @@
                     margin-left: 20px;
                 }
 
-                & li > a{
+                & li > a {
                     padding: 10px 20px;
                     width: 100%;
                 }
-                & li > a:hover, & li > a.active {
+                & li > a:hover,
+                & li > a.active {
                     background-color: #ebf8fa;
                 }
 
-                & > li > ul svg:not(.problematic-chevron-right) {
-                    display: none;
+                & li.problematique-menu-item > a {
+                    display: flex;
+                    /* justify-content: space-between; */
+                    align-items: center;
+                    position: relative;
+
+                    & span {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        gap: 10px;
+                    }
                 }
 
                 & li > a {
@@ -393,30 +404,30 @@
     }
 }
 
-dialog.coopleo-login-modal{
+dialog.coopleo-login-modal {
     width: 100%;
     max-width: min(620px, calc(100% - 24px));
     border: none;
 
-    & .coopleo-login-modal-wrapper{
+    & .coopleo-login-modal-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 10px;
         width: 100%;
 
-        & .close-modal{
+        & .close-modal {
             all: unset;
             cursor: pointer;
             align-self: flex-end;
         }
 
-        & a{
+        & a {
             padding: 10px 20px;
         }
     }
 
-    &::backdrop{
-        background-color: rgba(0,0,0,0.8);
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.8);
     }
 }
