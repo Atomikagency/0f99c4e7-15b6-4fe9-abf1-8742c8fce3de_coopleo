@@ -20,6 +20,8 @@ class CoopleoMenu {
 
         submenuItem.forEach((item) => {
             item.addEventListener("mouseover", () => {
+                submenuItem.forEach(el => el.classList.remove("active"))
+                item.classList.add("active");
                 const content = item.querySelector(".sub-menu").innerHTML;
                 target.innerHTML = content;
             });

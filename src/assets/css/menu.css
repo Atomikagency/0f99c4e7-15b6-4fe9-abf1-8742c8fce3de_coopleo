@@ -119,6 +119,14 @@
                     display: grid;
                 }
 
+                & li.problematique-menu-item.active a{
+                    color: #c92c61;
+                }
+
+                &:not(:has(li.problematique-menu-item.active)) li.problematique-menu-item:first-of-type a{
+                    color: #c92c61;
+                }
+
                 & > ul.sub-menu.problematique-dropdown {
                     display: none;
                     grid-template-columns: 2fr 1fr;

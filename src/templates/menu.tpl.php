@@ -89,7 +89,7 @@ function coopleo_render_submenu($items_by_parent, $parent_id, $depth = 1) {
         </button>
     <?php endif; ?>
 
-    <img class="coopleo-logo" src="/wp-content/uploads/2024/02/LOGO-COOPLEO-V2-DEF.png" />
+    <a href="/"><img class="coopleo-logo" src="/wp-content/uploads/2024/02/LOGO-COOPLEO-V2-DEF.png" /></a>
     
     <nav class="<?php echo esc_attr($container_class); ?>">
         <?php if (!empty($menu_items)) : ?>
