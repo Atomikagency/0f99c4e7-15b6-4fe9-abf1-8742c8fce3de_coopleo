@@ -38,7 +38,7 @@ function ta_enqueue_styles()
     wp_enqueue_style('coopleo-dual-range', COOPLEO_PLUGIN_URL . 'assets/css/dual-range.css', [], '1.9.4');
     wp_enqueue_style('coopleo-menu', COOPLEO_PLUGIN_URL . 'assets/css/menu.css', [], '1.1.0');
     wp_enqueue_script_module('coopleo-dual-range-input', COOPLEO_PLUGIN_URL . 'assets/js/dual-range-input.js', [], '1.9.4');
-    wp_enqueue_script_module('coopleo-menu', COOPLEO_PLUGIN_URL . 'assets/js/menu.js', [], '1.0.0');
+    wp_enqueue_script_module('coopleo-menu', COOPLEO_PLUGIN_URL . 'assets/js/menu.js', [], '1.1.0');
 }
 
 add_action('wp_enqueue_scripts', 'ta_enqueue_styles');
