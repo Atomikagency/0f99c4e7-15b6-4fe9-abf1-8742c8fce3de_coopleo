@@ -96,7 +96,7 @@ function coopleo_render_submenu($items_by_parent, $parent_id, $depth = 1) {
             <ul class="<?php echo esc_attr($menu_class); ?>">
                 <?php foreach ($menu_items as $item) : 
                     // Afficher seulement les éléments de premier niveau
-                    if ($item->menu_item_parent != 0) continue;
+                    if ($item->menu_item_parent != 0 || in_array('btn_hidden_consultation', $item->classes)) continue;
                     $has_children = isset($menu_items_by_parent[$item->ID]);
                     $item_class = 'menu-item menu-item-' . $item->ID;
                     
@@ -157,10 +157,12 @@ function coopleo_render_submenu($items_by_parent, $parent_id, $depth = 1) {
                                 </div>
                                 <div class="problematique-dropdown-cta">
                                     <p class="cta-title">Prenez soin de votre couple</p>
-                                    <a href="/trouver-therapeute-de-couple" class="find-pro">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>    
-                                        Trouver un professionnel
-                                    </a>
+                                    <?php if(!empty($btn)) : ?>
+                                        <a href="<?php echo $btn[0]->url ?>" class="find-pro">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>    
+                                            <?php echo $btn[0]->post_title ?>
+                                        </a>
+                                    <?php endif; ?>
                                     <div>
                                         <p class="question-title">Vous avez des questions ?</p>
                                         <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-question-mark-icon lucide-circle-question-mark"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>FAQ Complète</p>
@@ -182,15 +184,17 @@ function coopleo_render_submenu($items_by_parent, $parent_id, $depth = 1) {
         <?php endif; ?>
     </nav>
 
-    <div class="coopleo-actions">
-        <a href="/trouver-therapeute-de-couple" class="find-pro">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>    
-            <span>Trouver un professionnel</span>
-        </a>
-        <button class="connection">
-            <i aria-hidden="true" class="material-icons md-person_outline"></i>
-        </button>
-    </div>
+    <?php if(!empty($btn)) : ?>
+        <div class="coopleo-actions">
+            <a href="<?php echo $btn[0]->url ?>" class="find-pro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>    
+                <span><?php echo $btn[0]->post_title ?></span>
+            </a>
+            <button class="connection">
+                <i aria-hidden="true" class="material-icons md-person_outline"></i>
+            </button>
+        </div>
+    <?php endif; ?>
 </div>
 <dialog class="coopleo-login-modal">
     <div class="coopleo-login-modal-wrapper">

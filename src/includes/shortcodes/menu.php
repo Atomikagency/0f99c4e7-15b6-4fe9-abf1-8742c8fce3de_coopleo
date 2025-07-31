@@ -30,9 +30,14 @@ function coopleo_menu_shortcode($atts)
         return '<p class="coopleo-menu-error">' . __('Le menu "' . esc_html($menu_name) . '" est vide.', 'coopleo') . '</p>';
     }
 
+    $btn = [];
     // Organiser les éléments du menu par parent
     $menu_items_by_parent = array();
     foreach ($menu_items as $item) {
+        if (in_array('btn_hidden_consultation', $item->classes)){
+            $btn[] = $item;
+            continue;
+        }
         $parent_id = $item->menu_item_parent;
         if (!isset($menu_items_by_parent[$parent_id])) {
             $menu_items_by_parent[$parent_id] = array();
